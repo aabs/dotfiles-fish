@@ -1,6 +1,7 @@
 #!/usr/bin/env fish
 function pubkey
-    more ~/.ssh/id_rsa.pub | pbcopy | echo '=> Public key copied to pasteboard.'
+    clip (cat ~/.ssh/id_rsa.pub)
+    ok 'Public key copied to pasteboard.'
 end
 
 function l -w ls
@@ -10,24 +11,15 @@ end
 
 abbr --add salias 'alias | sort | grep'
 abbr --add bal 'ledger bal'
+abbr --add cls 'clear'
 
 function mcd -w mkdir
     mkdir $argv[1]
     cd $argv[1]
 end 
 
-function cls -w clear
-    clear
-end
 
-function td
-    $DOTFILES/tools/todo/todo.sh -N
-end
 
-function task
-    set -l TODAY (date --iso-8601)
-    td add "$TODAY $argv[1]"
-end
 
 
 switch (uname)
