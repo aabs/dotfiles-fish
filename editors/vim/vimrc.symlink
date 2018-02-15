@@ -1,0 +1,57 @@
+syntax on
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+call plug#begin('~/.vim/plugged')
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Shougo/deoplete.nvim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'kshenoy/vim-signature'
+Plug 'bkad/camelcasemotion'
+Plug 'elixir-lang/vim-elixir'
+Plug 'vim-pandoc/vim-pandoc'
+Plug 'vim-pandoc/vim-pandoc-syntax'
+call plug#end()
+
+filetype plugin indent on    " required
+
+autocmd StdinReadPre * let s:std_in=1
+
+"  Set up indentations
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set nu " turn on line numbers
+
+set autoindent
+set textwidth=80
+set nobackup
+
+let g:vim_markdown_folding_disabled = 0 
+
+" deoplete config
+let g:deoplete#enable_at_startup = 1
+" disable autocomplete
+let g:deoplete#disable_auto_complete = 1
+if has("gui_running")
+    inoremap <silent><expr><C-Space> deoplete#mappings#manual_complete()
+else
+    inoremap <silent><expr><C-@> deoplete#mappings#manual_complete()
+endif
+" UltiSnips config
+ let g:UltiSnipsSnippetDirectories=$HOME.'~/.vim/UltiSnips'
+inoremap <silent><expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" " If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+:hi Directory guifg=#FF0000 ctermfg=cyan
+
+let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_open_on_new_tab=1

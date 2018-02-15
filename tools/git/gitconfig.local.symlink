@@ -1,0 +1,5 @@
+[user]
+        name = Andrew Matthews
+        email = matthews.andrew@gmail.com
+[credential]
+        helper = cache

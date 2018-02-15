@@ -1,0 +1,5 @@
+alias kpwd='kubectl config view | grep password | uniq | cut -c 15- -'
+alias k8s-clusters='echo "use k8s-use-aws or k8s-use-gke"'
+alias kclc='k config get-contexts --no-headers -o name'
+alias k8s-use-aws='kubectl config use-context services.industrialinference.net'
+alias k8s-use-gke='kubectl config use-context gke_bitnami-ykpklch8ra_us-central1-a_industrial-inference'

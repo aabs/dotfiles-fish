@@ -1,0 +1,127 @@
+"*":
+  Zen:
+    showWordCount: "Right"
+    typewriter: true
+    width: 72
+  "asciidoc-preview":
+    skipFrontMatter: true
+  "atom-beautify":
+    general:
+      _analyticsUserId: "35dd2c1f-67ba-4c56-8135-d012ad1cfeb4"
+  "autocomplete-erlang":
+    erlangHome: "/usr/local/Cellar/erlang/19.0.2/lib/erlang/bin"
+  core:
+    disabledPackages: [
+      "language-gfm"
+    ]
+    projectHome: "/Users/andrewmatthews/dev"
+    telemetryConsent: "no"
+    themes: [
+      "atom-light-ui"
+      "atom-light-syntax"
+    ]
+  editor:
+    fontFamily: "Courier New"
+    invisibles: {}
+    preferredLineLength: 300
+    scrollPastEnd: true
+    softWrap: true
+    softWrapHangingIndent: 1
+    tabType: "soft"
+    zoomFontWhenCtrlScrolling: true
+  "exception-reporting":
+    userId: "cce0862b-a0d7-0b4b-887a-0387938e3bfc"
+  "go-debug": {}
+  "go-oracle":
+    goPath: "/Users/andrewmatthews/dev/go"
+  "go-plus":
+    formatTool: "gofmt"
+    goPath: "~/dev/go"
+  "gruvbox-plus-syntax":
+    contrast: "Hard"
+  linter:
+    errorPanelHeight: 145
+  "markdown-preview-plus":
+    enablePandoc: true
+    pandocBibliography: true
+    useGitHubStyle: true
+  "markdown-writer":
+    fileExtension: ".md"
+    siteEngine: "jekyll"
+  minimap:
+    plugins:
+      "highlight-selected": true
+      "highlight-selectedDecorationsZIndex": 0
+  "project-manager":
+    includeGitRepositories: true
+  "spell-check": {}
+  "tree-view": {}
+  welcome:
+    showOnStartup: false
+".coffee.jsx.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".diff.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".erlang.html.text.yaws":
+  editor:
+    softWrapHangingIndent: 1
+    tabLength: 4
+".erlang.source":
+  editor:
+    softWrapHangingIndent: 1
+    tabLength: 4
+".html.riot.text":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".js.jsx.source":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".md.text":
+  editor:
+    preferredLineLength: 100
+    softWrapAtPreferredLineLength: true
+    softWrapHangingIndent: 1
+    tabLength: 4
+".ntriples.source":
+  editor:
+    preferredLineLength: 132
+    softWrapHangingIndent: 1
+    tabLength: 4
+".source.ts":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".source.tsx":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".source.turtle":
+  editor:
+    preferredLineLength: 132
+    softWrapHangingIndent: 1
+    tabLength: 4
+".source.viml":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".text.todo":
+  editor:
+    preferredLineLength: 100
+    softWrapHangingIndent: 2
+    tabLength: 4
+".text.xml":
+  editor:
+    tabLength: 4

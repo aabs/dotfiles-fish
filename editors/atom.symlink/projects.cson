@@ -1,0 +1,64 @@
+[
+  {
+    title: "clarity"
+    paths: [
+      "/Users/andrewmatthews/dev/by-technology/dotnet/clarity"
+      "/Users/andrewmatthews/Synchronised/incoming_personal/Projects/by-technology/html/clarity"
+      "/Users/andrewmatthews/Synchronised/incoming_personal/Projects/by-technology/zsh"
+    ]
+  }
+  {
+    title: "site1"
+    paths: [
+      "/Users/andrewmatthews/Synchronised/incoming_personal/Projects/by-technology/go/src/github.com/aabs/site1"
+      "/Users/andrewmatthews/Synchronised/incoming_personal/Projects/by-technology/go/src/github.com/aabs/server1"
+      "/Users/andrewmatthews/Synchronised/incoming_personal/Projects/by-technology/go/src/github.com/aabs/messages1"
+    ]
+  }
+  {
+    title: "fintech DP"
+    paths: [
+      "/Users/andrewmatthews/Synchronised/active_work/presentations/fintech DP"
+    ]
+  }
+  {
+    title: "zkdemo"
+    paths: [
+      "/Users/andrewmatthews/Synchronised/incoming_personal/Projects/go/src/github.com/aabs/zkdemo"
+    ]
+  }
+  {
+    title: "Food Diary"
+    paths: [
+      "/Users/andrewmatthews/Synchronised/incoming_personal/Projects/significant-projects/food_diary"
+      "/Users/andrewmatthews/Synchronised/incoming_personal/Projects/significant-projects/food_diary/server/go/src/fooddiary"
+    ]
+  }
+  {
+    title: "Dotfiles"
+    paths: [
+      "/Users/andrewmatthews/.dotfiles"
+      "/Users/andrewmatthews"
+    ]
+  }
+  {
+    title: "My Long Term Plan"
+    paths: [
+      "/Users/andrewmatthews/Dropbox/_active/mylongtermplan.com"
+    ]
+  }
+  {
+    title: "Multi Host"
+    paths: [
+      "/Users/andrewmatthews/dev/significant-projects/multi-host"
+    ]
+  }
+  {
+    title: "USM S&P Radar"
+    group: "USM"
+    paths: [
+      "/Users/andrewmatthews/dev/by-technology/html/usmsnp_radar"
+    ]
+    devMode: true
+  }
+]

@@ -1,0 +1,3 @@
+[submodule "tmux.symlink"]
+	path = tmux.symlink
+	url = https://github.com/tony/tmux-config.git
