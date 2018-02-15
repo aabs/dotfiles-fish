@@ -8,13 +8,8 @@ function l -w ls
     ls -lash
 end
 
-function salias
-    alias | sort | grep
-end
-
-function bal
-    ledger bal
-end
+abbr --add salias 'alias | sort | grep'
+abbr --add bal 'ledger bal'
 
 function mcd -w mkdir
     mkdir $argv[1]
@@ -34,9 +29,6 @@ function task
     td add "$TODAY $argv[1]"
 end
 
-alias did='td do' # add line number of task
-alias tasks='td list'
-alias contexts='td lsc'
 
 switch (uname)
     case Darwin

@@ -1,73 +1,76 @@
 #!/usr/bin/zsh
 
+# assoc usage patterns
+# ==========================
+# assoc.set name[key] value
+# assoc.get name[key]
+# assoc.rm  name[key]
+# assoc.has_key name[key]
 
-project_path(){
-    echo $project_paths[$1]
-}
+function project_path
+    set -l key $argv[1]
+    echo (assoc.get project_paths[$key])
+end
 
-project_name(){
-    echo $project_names[$1]
-}
+function project_name
+    echo (assoc.get project_names[$argv[1]])
+end
 
-project_list_project_short_names(){
-	for key in ${(k)project_names};
-	do
-		echo $key
-	done
-}
+function project_list_project_short_names
+    for key in $_project_names
+		echo $key        
+    end
+end
 
-project_list_project_long_names(){
-	for key in ${(k)project_names};
-	do
-		echo $project_names[$key]
-	done
-}
+function project_list_project_long_names
+    for key in $_project_names
+		echo (assoc.get project_names[$key])
+    end
+end
 
-goto(){
-    echo "Switching to $(project_name $1)"
-    i sw "$(project_name $1)"
-    set_current_project $1
-    GEOMETRY_PROMPT_SUFFIX=" <$CURRENT_PROJECT_SN> $"
-    pcd $1
-}
+function goto
+    action "Switching to "(project_name $argv[1])
+    set_current_project $argv[1]
+    pcd $argv[1]
+end
 
-set_current_project(){
-    export CURRENT_PROJECT_SN=$1
-}
+function set_current_project
+    set -x CURRENT_PROJECT_SN $argv[1]
+end
 
-edit_project(){
+function edit_project
     _cd_project_directory
 	$EDITOR 
-}
+end
 
-_cd_current_project_directory(){
+function _cd_current_project_directory
     _cd_project_directory $CURRENT_PROJECT_SN
-}
+end
 
-_cd_project_directory(){
-    cd $(project_path $1)
-}
+function _cd_project_directory
+    cd (project_path $argv[1])
+end
 
 
-_create_project_task(){
-    _create_task "$1 +$CURRENT_PROJECT_SN"
-}
+function _create_project_task
+    _create_task "$argv[1] +$CURRENT_PROJECT_SN"
+end
 
-_create_project_note_dated(){
-    notes n "$CURRENT_PROJECT_SN/$(today)-$1"
-}
-_project_quick_checkin(){
+function _create_project_note_dated
+    notes n "$CURRENT_PROJECT_SN/"(date --iso-8601)"-$argv[1]"
+end
+
+function _project_quick_checkin
     git add -A
-    git rm $(git ls-files --deleted) 2> /dev/null
-    git commit --no-verify -m "$1"
-    git push origin "$(git_current_branch)"
-}
+    git rm (git ls-files --deleted) 2> /dev/null
+    git commit --no-verify -m "$argv[1]"
+    git push origin (git_current_branch)
+end
 
-_project_detach_from_tmux_session(){
-    tmux detach -s "${CURRENT_PROJECT_SN}-session"
-}
+function _project_detach_from_tmux_session
+    tmux detach -s $CURRENT_PROJECT_SN"-session"
+end
 
-for key in ${(k)project_names};
-do
-    eval "alias $key='goto $key'"
-done
+for key in #{2:array}
+    abbr --add "_$key" 'goto $key'
+end

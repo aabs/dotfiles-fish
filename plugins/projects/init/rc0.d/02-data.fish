@@ -6,6 +6,7 @@
 # assoc.rm  name[key]
 # assoc.has_key name[key]
 
+    set _project_names coins erl dots career thor notes kops
 
     assoc.set project_paths[coins]   "$FINANCE_DIR"    
     assoc.set project_paths[erl]     "$PROJECT_HOME/by-technology/erlang/katas"    
