@@ -1,0 +1,5 @@
+bundle
+vim.symlink/autoload
+vim.symlink/plugged
+vim.symlink/spell
+
