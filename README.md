@@ -18,8 +18,3 @@ My fish shell dotfiles, loosely modeled on holman/dotfiles
 ## Concepts
 
 - *context* - a new mode of working, based around a set of tools, technologies, paths and environment settings
-
-## Tasks
-
-- [ ] Define a SQLite3 database wrapper to get and set context variables
-- [ ] Define a set of standard functions for getting, setting envs, vars, and functions etc
