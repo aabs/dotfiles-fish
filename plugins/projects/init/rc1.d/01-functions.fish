@@ -64,7 +64,7 @@ function _project_quick_checkin
     git add -A
     git rm (git ls-files --deleted) 2> /dev/null
     git commit --no-verify -m "$argv[1]"
-    git push origin (git_current_branch)
+    git push origin (git branch-name)
 end
 
 function _project_detach_from_tmux_session

@@ -1,4 +1,4 @@
 etc
-tools/tmux/tmux.symlink/plugins
-tools/tmux/tmux.symlink/resurrect
+plugins/tmux/tmux.symlink/plugins
+plugins/tmux/tmux.symlink/resurrect
 

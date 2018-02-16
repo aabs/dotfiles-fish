@@ -1,6 +1,7 @@
 #!/usr/bin/env fish
 
 abbr --add g    'git'
+abbr --add gll  'git ll'
 
 abbr --add ga   'git add'
 abbr --add gaa  'git add --all'
