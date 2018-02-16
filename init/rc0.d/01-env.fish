@@ -5,4 +5,3 @@ set -x PATH "$HOME/bin" "/usr/local/bin" "$DOTFILES/bin" $PATH
 
 set -x EDITOR vim
 set -x SYNC_HOME /mnt/d/Synchronised
-set -x PROJECT_HOME $SYNC_HOME/active_personal/Projects

@@ -71,6 +71,11 @@ function _project_detach_from_tmux_session
     tmux detach -s $CURRENT_PROJECT_SN"-session"
 end
 
-for key in #{2:array}
-    abbr --add "_$key" 'goto $key'
+function _list_project_tasks
+    td list +$CURRENT_PROJECT_SN
 end
+
+function pcd -d "switch to project directory"
+    cd (project_path $argv[1])
+end
+
