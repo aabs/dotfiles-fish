@@ -1,4 +1,4 @@
-# dotfiles-fish
+# fishdots
 My fish shell dotfiles, loosely modeled on holman/dotfiles
 
 ## Requirements
