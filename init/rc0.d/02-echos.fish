@@ -9,25 +9,25 @@ function fecho -d "display text with  (prefix, colour) msg"
 end
 
 function ok -d "display text with [OK] prefix"
-    fecho "[OK]" green "$argv[1]"
+    fecho "[OK] " green "$argv[1]"
 end
 
 function bot -d "display text with [._.] prefix"
-    fecho "[._.]" green "$argv[1]"
+    fecho "[._.] " green "$argv[1]"
 end
 
 function running
-    fecho " ⇒ " cyan "$argv[1]"
+    fecho " => " cyan "$argv[1]"
 end
 
 function action
-    fecho "[action]" yellow "$argv[1]"
+    fecho "[action] " yellow "$argv[1]"
 end
 
 function warn
-    fecho "[warning]" yellow "$argv[1]"
+    fecho "[warning] " yellow "$argv[1]"
 end
 
 function error
-    fecho "[error]" red "$argv[1]"
+    fecho "[error] " red "$argv[1]"
 end

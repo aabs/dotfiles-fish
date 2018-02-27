@@ -1,4 +1,4 @@
-#!/usr/bin/zsh
+#!/usr/bin/fish
 
 # assoc usage patterns
 # ==========================
@@ -29,7 +29,7 @@ function project_list_project_long_names
 end
 
 function goto
-    action "Switching to "(project_name $argv[1])
+    ok "Switching to "(project_name $argv[1])
     set_current_project $argv[1]
     pcd $argv[1]
 end
