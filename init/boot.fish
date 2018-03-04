@@ -35,5 +35,3 @@ for plugin in (find $DOTFILES/plugins -maxdepth 1 -mindepth 1 -type d -not -inam
         end
     end
 end
-
-fish_logo
