@@ -18,29 +18,23 @@ function mcd -w mkdir
     cd $argv[1]
 end 
 
-
-
-
-
 switch (uname)
     case Darwin
-        alias vimenv='mvim ~/.dotfiles'
-        alias code='/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron'
-        alias USM='open -a Safari.app https://goto.unisuper.com.au'
-        alias ywriter='mono /Applications/yWriter6/yWriter6.exe'
-        alias chromedb='/opt/homebrew-cask/Caskroom/google-chrome/latest/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
-        alias att='atom .'
-        alias rpisshtest='ssh-test "$DOTFILES/system/parklabrae.hosts.txt"'
-        alias cpu='top -o cpu -s 3'
-        alias google='googler -n 7 -c ru -l ru'
+        abbr --add vimenv 'mvim ~/.dotfiles'
+        abbr --add code '/Applications/Visual\ Studio\ Code.app/Contents/MacOS/Electron'
+        abbr --add USM 'open -a Safari.app https://goto.unisuper.com.au'
+        abbr --add ywriter 'mono /Applications/yWriter6/yWriter6.exe'
+        abbr --add chromedb '/opt/homebrew-cask/Caskroom/google-chrome/latest/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --remote-debugging-port=9222'
+        abbr --add att 'atom .'
+        abbr --add rpisshtest 'ssh-test "$DOTFILES/system/parklabrae.hosts.txt"'
+        abbr --add cpu 'top -o cpu -s 3'
+        abbr --add google 'googler -n 7 -c ru -l ru'
     case Linux
-        alias vimenv='vim $DOTFILES'
-        alias rpisshtest='echo "this only works at home"'
-        alias att='atom .'
-        alias ctt='code . &'
+        abbr --add vimenv '$EDITOR $DOTFILES'
+        abbr --add att 'atom .&'
+        abbr --add ctt 'code .&'
 end
 
 # source $(brew --prefix nvm)/nvm.sh
-alias senv='env | sort'
-alias envup='source ~/.zshrc'
-alias myssh='ssh root@176.126.85.224'
+abbr --add senv 'env | sort'
+abbr --add envup 'source ~/.zshrc'

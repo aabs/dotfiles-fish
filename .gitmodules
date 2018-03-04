@@ -22,3 +22,6 @@
 [submodule "plugins/fishdots_tmux"]
 	path = plugins/fishdots_tmux
 	url = https://github.com/aabs/fishdots_tmux.git
+[submodule "plugins/fishdots_devdirs"]
+	path = plugins/fishdots_devdirs
+	url = git@github.com:aabs/fishdots_devdirs.git

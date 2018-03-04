@@ -1,5 +1,9 @@
 #!/usr/bin/env fish
 
+# this is the one env var that needs to be set up prior to the boot process
+set DOTFILES (realpath ~/.fishdots)
+set -x QUIET_FISHDOTS true
+
 # this will have been invoked from .config/fish/config.fish, which will have set $DOTFILES
 
 function log
