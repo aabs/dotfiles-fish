@@ -12,10 +12,6 @@ function ok -d "display text with [OK] prefix"
     fecho "[OK] " green "$argv[1]"
 end
 
-function bot -d "display text with [._.] prefix"
-    fecho "[._.] " green "$argv[1]"
-end
-
 function running
     fecho " => " cyan "$argv[1]"
 end

@@ -25,3 +25,6 @@
 [submodule "plugins/fishdots_devdirs"]
 	path = plugins/fishdots_devdirs
 	url = git@github.com:aabs/fishdots_devdirs.git
+[submodule "plugins/fishdots_clipboard"]
+	path = plugins/fishdots_clipboard
+	url = git@github.com:aabs/fishdots_clipboard.git
