@@ -1,0 +1,24 @@
+[submodule "plugins/fishdots_projects"]
+	path = plugins/fishdots_projects
+	url = git@github.com:aabs/fishdots_projects.git
+[submodule "plugins/fishdots_problem"]
+	path = plugins/fishdots_problem
+	url = git@github.com:aabs/fishdots_problem.git
+[submodule "plugins/fishdots_git"]
+	path = plugins/fishdots_git
+	url = git@github.com:aabs/fishdots_git.git
+[submodule "plugins/fishdots_todo"]
+	path = plugins/fishdots_todo
+	url = https://github.com/aabs/fishdots_todo.git
+[submodule "plugins/fishdots_kops"]
+	path = plugins/fishdots_kops
+	url = https://github.com/aabs/fishdots_kops.git
+[submodule "plugins/fishdots_tech"]
+	path = plugins/fishdots_tech
+	url = https://github.com/aabs/fishdots_tech.git
+[submodule "plugins/fishdots_timekeeping"]
+	path = plugins/fishdots_timekeeping
+	url = https://github.com/aabs/fishdots_timekeeping.git
+[submodule "plugins/fishdots_tmux"]
+	path = plugins/fishdots_tmux
+	url = https://github.com/aabs/fishdots_tmux.git

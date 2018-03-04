@@ -6,7 +6,7 @@ end
 
 function l -w ls
     clear
-    ls -lash
+    ls -lash --group-directories-first
 end
 
 abbr --add salias 'alias | sort | grep'
