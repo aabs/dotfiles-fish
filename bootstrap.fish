@@ -32,13 +32,12 @@ else
     ln -s (realpath .) $HOME/.fishdots
 end
 
-function to_dotform -d "transform a name from symlink form into dotfile form"
-    set a (string replace ".symlink" "" $argv[1])
+function to_dotform -a original_name -d "transform a name from symlink form into dotfile form"
+    set a (string replace ".symlink" "" $original_name)
     echo ".$a"
 end
 
-function make_symlink -d "transforms a symlink file or directory into a dotfile in the $HOME directory"
-  set origin $argv[1]
+function make_symlink -a origin -d "transforms a symlink file or directory into a dotfile in the $HOME directory"
   set dotform "$HOME/."(basename -s .symlink $origin)
 # if test -f "$dotform"
 # mv -f $dotform $dotform.backup
