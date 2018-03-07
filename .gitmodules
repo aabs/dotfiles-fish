@@ -28,3 +28,6 @@
 [submodule "plugins/fishdots_todo"]
 	path = plugins/fishdots_todo
 	url = https://github.com/aabs/fishdots_todo.git
+[submodule "editors/emacs.d.symlink"]
+	path = editors/emacs.d.symlink
+	url = https://github.com/syl20bnr/spacemacs
