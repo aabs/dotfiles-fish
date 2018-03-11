@@ -18,6 +18,13 @@ function log
     end
 end
 
+function welcome -d "display a welcome banner"
+    log "Welcome to fishdots"
+    echo ""
+end
+
+welcome
+
 # run each of the init scripts in each init level in turn
 for level in (seq 0 2)
     for script in (find "$DOTFILES/init/rc"$level".d/" -name "*.fish")

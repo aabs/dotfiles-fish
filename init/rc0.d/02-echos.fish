@@ -1,29 +1,30 @@
 #!/usr/bin/env bash
 
-
-function fecho -d "display text with  (prefix, colour) msg"
-    set_color $argv[2]
-    echo -n $argv[1] 
-    echo $argv[3]
-    set_color normal
+function fecho -a icon icon_colour msg  -d "display text with  (prefix, colour) msg"
+    if test $QUIET_FISHDOTS_BOOT_LOGGING  != true
+        set_color $icon_colour
+        echo -n $icon
+        set_color normal
+        echo $msg
+    end
 end
 
-function ok -d "display text with [OK] prefix"
-    fecho "[OK] " green "$argv[1]"
+function ok -a message -d "display text with [OK] prefix"
+    fecho "[OK] " green "$message"
 end
 
-function running
-    fecho " => " cyan "$argv[1]"
+function running -a message 
+    fecho " => " cyan "$message"
 end
 
-function action
-    fecho "[action] " yellow "$argv[1]"
+function action -a message
+    fecho "[action] " yellow "$message"
 end
 
-function warn
-    fecho "[warning] " yellow "$argv[1]"
+function warn -a message
+    fecho "[warning] " yellow "$message"
 end
 
-function error
-    fecho "[error] " red "$argv[1]"
+function error -a message
+    fecho "[error] " red "$message"
 end
