@@ -9,7 +9,7 @@ function l -w ls
     ls -lash --group-directories-first
 end
 
-abbr --add salias 'alias | sort | grep'
+abbr --add salias 'abbr | sort | grep'
 abbr --add bal 'ledger bal'
 abbr --add cls 'clear'
 
