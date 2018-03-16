@@ -1,30 +1,30 @@
 [submodule "plugins/fishdots_projects"]
 	path = plugins/fishdots_projects
-	url = git@github.com:aabs/fishdots_projects.git
+	url = https://github.com/aabs/fishdots_projects.git
 [submodule "plugins/fishdots_problem"]
 	path = plugins/fishdots_problem
-	url = git@github.com:aabs/fishdots_problem.git
+	url = https://github.com/aabs/fishdots_problem.git
 [submodule "plugins/fishdots_git"]
 	path = plugins/fishdots_git
-	url = git@github.com:aabs/fishdots_git.git
+	url = https://github.com/aabs/fishdots_git.git
 [submodule "plugins/fishdots_kops"]
 	path = plugins/fishdots_kops
-	url = git@github.com:aabs/fishdots_kops.git
+	url = https://github.com/aabs/fishdots_kops.git
 [submodule "plugins/fishdots_tech"]
 	path = plugins/fishdots_tech
-	url = git@github.com:aabs/fishdots_tech.git
+	url = https://github.com/aabs/fishdots_tech.git
 [submodule "plugins/fishdots_timekeeping"]
 	path = plugins/fishdots_timekeeping
-	url = git@github.com:aabs/fishdots_timekeeping.git
+	url = https://github.com/aabs/fishdots_timekeeping.git
 [submodule "plugins/fishdots_tmux"]
 	path = plugins/fishdots_tmux
-	url = git@github.com:aabs/fishdots_tmux.git
+	url = https://github.com/aabs/fishdots_tmux.git
 [submodule "plugins/fishdots_devdirs"]
 	path = plugins/fishdots_devdirs
-	url = git@github.com:aabs/fishdots_devdirs.git
+	url = https://github.com/aabs/fishdots_devdirs.git
 [submodule "plugins/fishdots_clipboard"]
 	path = plugins/fishdots_clipboard
-	url = git@github.com:aabs/fishdots_clipboard.git
+	url = https://github.com/aabs/fishdots_clipboard.git
 [submodule "plugins/fishdots_todo"]
 	path = plugins/fishdots_todo
 	url = https://github.com/aabs/fishdots_todo.git
