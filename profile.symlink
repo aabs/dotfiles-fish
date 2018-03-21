@@ -53,3 +53,5 @@ fi
 # Set Debian packaging details
 export DEBEMAIL="andrew.matthews@team.telstra.com"
 export DEBFULLNAME="Andrew Matthews"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

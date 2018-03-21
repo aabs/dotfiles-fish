@@ -4,7 +4,7 @@
 set -U FISHDOTS (realpath ~/.fishdots)
 set -U FISHDOTS_CONFIG ~/.config/fishdots
 set -U FISHDOTS_PLUGINS_HOME "$FISHDOTS_CONFIG/plugins"
-set -x QUIET_FISHDOTS_BOOT_LOGGING true
+set -x QUIET_FISHDOTS_BOOT_LOGGING false
 set -g FD_MAX_RUN_LEVEL 5
 
 if test $QUIET_FISHDOTS_BOOT_LOGGING  != true

@@ -1,5 +1,5 @@
-function install_plugin -a git_url
-   git clone $git_url $FISHDOTS_PLUGINS_HOME
+function install_plugin -a git_url name
+   git clone $git_url $FISHDOTS_PLUGINS_HOME/$name
 end
 
 function remove_plugin -a name
