@@ -12,8 +12,8 @@ function plugin
       plugin_uninstall $argv[2]
     case list
       plugin_list
-    case refresh
-      plugin_refresh $argv[2]
+    case sync
+      plugin_sync $argv[2]
     case help
       plugin_help
     case '*'
@@ -24,11 +24,6 @@ end
 function plugin_install -a git_url name
   cd $FISHDOTS_PLUGINS_HOME
   git clone $git_url $name
-end
-
-function plugin_refresh -a name
-  cd $FISHDOTS_PLUGINS_HOME/$name
-  git pull origin (/usr/bin/git rev-parse --abbrev-ref HEAD)
 end
 
 function plugin_uninstall -a name
@@ -58,9 +53,36 @@ function plugin_help
   echo "plugin list"
   echo "  list all installed plugins"
   echo ""
-  echo "plugin refresh name"
-  echo "  get any origin changes for the plugin"
+  echo "plugin save name"
+  echo "  save any changes to the plugin"
+  echo ""
+  echo "plugin sync name"
+  echo "  save and push any changes to the plugin"
   echo ""
   echo "plugin help"
   echo "  this .. .  ."
+end
+
+function plugin_save -a basename -d "save all new or modified notes locally"
+  _enter_plugin_home $basename
+  git add -A .
+  git commit -m "more tinkering"
+  _leave_plugin_home
+end
+
+function plugin_sync -a basename -d "save all notes to origin repo"
+  plugin_save $basename
+  _enter_plugin_home $basename
+  git fetch --all -t
+  git push origin (git branch-name)
+  _leave_plugin_home
+end
+
+function _enter_plugin_home -a basename -d 'change directories to root of plugin provided'
+  pushd .
+  cd $FISHDOTS_PLUGINS_HOME/$basename
+end
+
+function _leave_plugin_home
+  popd
 end
