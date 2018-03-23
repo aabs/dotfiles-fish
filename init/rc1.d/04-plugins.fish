@@ -10,7 +10,7 @@ function plugin
       plugin_install $argv[2] $argv[3]
     case uninstall
       plugin_uninstall $argv[2]
-    case list
+    case ls
       plugin_list
     case sync
       plugin_sync $argv[2]
@@ -22,15 +22,25 @@ function plugin
 end
 
 function plugin_install -a git_url name
-  cd $FISHDOTS_PLUGINS_HOME
+  _fd_enter $FISHDOTS_PLUGINS_HOME
+ 
+  if test -e $name
+    warn "Plugin is already installed"
+  end
+
   git clone $git_url $name
+  _fd_leave
 end
 
 function plugin_uninstall -a name
   # just delete it  (?? OR check if there are uncommitted changes first ??)
-  if test -e "$FISHDOTS_PLUGINS_HOME/$name"
-    rm -rf "$FISHDOTS_PLUGINS_HOME/$name"
+  _fd_enter $FISHDOTS_PLUGINS_HOME
+
+  if test -e $name
+    rm -rf $name
   end
+
+  _fd_leave
 end
 
 function plugin_list
@@ -50,7 +60,7 @@ function plugin_help
   echo "plugin uninstall name"
   echo "  remove the plugin by name"
   echo ""
-  echo "plugin list"
+  echo "plugin ls"
   echo "  list all installed plugins"
   echo ""
   echo "plugin save name"
@@ -69,13 +79,4 @@ end
 
 function plugin_sync -a basename -d "save all notes to origin repo"
   fishdots_git_sync $FISHDOTS_PLUGINS_HOME/$basename "more tinkering"
-end
-
-function _enter_plugin_home -a basename -d 'change directories to root of plugin provided'
-  pushd .
-  cd $FISHDOTS_PLUGINS_HOME/$basename
-end
-
-function _leave_plugin_home
-  popd
 end
