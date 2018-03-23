@@ -64,18 +64,11 @@ function plugin_help
 end
 
 function plugin_save -a basename -d "save all new or modified notes locally"
-  _enter_plugin_home $basename
-  git add -A .
-  git commit -m "more tinkering"
-  _leave_plugin_home
+  fishdots_git_save $FISHDOTS_PLUGINS_HOME/$basename "more tinkering"
 end
 
 function plugin_sync -a basename -d "save all notes to origin repo"
-  plugin_save $basename
-  _enter_plugin_home $basename
-  git fetch --all -t
-  git push origin (git branch-name)
-  _leave_plugin_home
+  fishdots_git_sync $FISHDOTS_PLUGINS_HOME/$basename "more tinkering"
 end
 
 function _enter_plugin_home -a basename -d 'change directories to root of plugin provided'

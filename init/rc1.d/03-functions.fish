@@ -25,23 +25,16 @@ end
 function fishdots_update -d "get the latest version of fishdots and each of its plugins"
   fishdots_sync
   for p in (find $FISHDOTS_PLUGINS_HOME -maxdepth 1 -mindepth 1 -type d)
-    plugin
+    plugin sync (basename $p)
   end
 end
 
 function fishdots_save -d "save all new or modified notes locally"
-  _enter_fishdots_home
-  git add -A .
-  git commit -m "more tinkering"
-  _leave_fishdots_home
+  fishdots_git_save $FISHDOTS "more tinkering"
 end
 
 function fishdots_sync -d "save all notes to origin repo"
-  fishdots_save
-  _enter_fishdots_home
-  git fetch --all -t
-  git push origin (git branch-name)
-  _leave_fishdots_home
+  fishdots_git_sync $FISHDOTS "more tinkering"
 end
 
 function fishdots_help
