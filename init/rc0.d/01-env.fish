@@ -3,6 +3,9 @@
 set -x PATH "$HOME/bin" "/usr/local/bin" "$HOME/.fishdots/bin" $PATH
 set -x EDITOR vim
 
+if not set -q FISHDOTS_PLUGINS_HOME
+    set -U FISHDOTS_PLUGINS_HOME $HOME/.config/fishdots/plugins    
+end
 
 # too many other things depend on this for their rc0.d loading to put this in a plugin
 if test -e /mnt/d/
