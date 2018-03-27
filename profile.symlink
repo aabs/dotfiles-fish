@@ -35,3 +35,23 @@ if [ -n "${BASH_VERSION}" ]; then
     source "${HOME}/.bashrc"
   fi
 fi
+
+
+if [ -d ~/opt/dot-profile-config/scripts ]
+then
+    source ~/opt/dot-profile-config/scripts/aliases.sh
+    source ~/opt/dot-profile-config/scripts/proxy.sh
+    source ~/opt/dot-profile-config/scripts/forwards.sh
+    source ~/opt/dot-profile-config/scripts/puppet.sh
+    source ~/opt/dot-profile-config/scripts/runner.sh
+    source ~/opt/dot-profile-config/scripts/keychain.sh
+    source ~/opt/dot-profile-config/scripts/dhvenv.sh
+    source ~/opt/dot-profile-config/scripts/persistent_history.sh
+    source ~/opt/dot-profile-config/scripts/bamboo_deployer.sh
+fi
+
+# Set Debian packaging details
+export DEBEMAIL="andrew.matthews@team.telstra.com"
+export DEBFULLNAME="Andrew Matthews"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
