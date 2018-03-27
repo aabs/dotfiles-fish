@@ -26,8 +26,9 @@ function fishdots_git_sync -a abs_path commit_message -d "save and get any chang
 
   # then get remote changes and try to push local changes up to origin
   _fd_enter $abs_path
-  git fetch --all -t
+  git pull origin (git branch-name)
   git push origin (git branch-name)
+  git fetch --all -t
   _fd_leave
 end
 
