@@ -14,7 +14,6 @@ Plug 'bkad/camelcasemotion'
 Plug 'elixir-lang/vim-elixir'
 Plug 'vim-pandoc/vim-pandoc'
 Plug 'vim-pandoc/vim-pandoc-syntax'
-Plug 'jceb/vim-orgmode'
 call plug#end()
 
 filetype plugin indent on    " required

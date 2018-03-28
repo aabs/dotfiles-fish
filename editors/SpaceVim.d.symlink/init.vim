@@ -19,7 +19,10 @@ let g:spacevim_disabled_plugins=[
 \ ]
 
 " If you want to add some custom plugins, use these options:
-let g:spacevim_custom_plugins = [  ]
+let g:spacevim_custom_plugins = [ 
+  \ [ 'vimoutliner/vimoutliner'],
+  \ [ 'soares/fish.vim' ]
+  \ ]
 
 let g:spacevim_enable_guicolors = 0 
 let g:spacevim_enable_vimfiler_welcome = 1

@@ -2,6 +2,11 @@
 
 #### Geneeral purpose helper functions for fishdots
 function fishdots
+  if test 0 -eq (count $argv)
+    fishdots_help
+    return
+  end
+
   switch $argv[1]
     case home
       fishdots_home
