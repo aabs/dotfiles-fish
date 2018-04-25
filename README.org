@@ -1,0 +1,62 @@
+#+TITLE: FishDots
+#+AUTHOR: Andrew Matthews
+
+My fish shell dotfiles, loosely modeled on holman/dotfiles
+
+* Requirements
+
+** DONE scan for all relevant files under base =dotfiles= dir.
+** DONE link all =.symlink= files into =~=
+** DONE manage submodules for common shell plugins
+** DONE define aliases
+** DONE project handling system to allow jumps to hot spots
+** DONE manage tasks
+** DONE manage notes
+** TODO adapt to local circumstances to add and leave out machine or platform specific scripts
+** DONE define a natural order of application /like =init.d= levels(??)/
+** DONE apply env variables by context
+
+* Concepts
+  
+| Term    | Definition                                                                                       |
+|---------+--------------------------------------------------------------------------------------------------|
+| context | a new mode of working, based around a set of tools, technologies, paths and environment settings |
+
+* Immutability Requirements
+
+To make use of the nix inspired generational model, what is needed?
+
+** TODO remove use of =save= and =sync= commands to only apply to plugin data
+** TODO define a protocol for the requesting of save operations from a plugin
+** TODO create an area for generations, within the bootstrap process
+** TODO change the install plugin install commands to create new generation
+
+** Immutability questions
+
+*** TODO What to do about previously installed plugins?
+*** TODO How can installation of a new plugin build on top of an existing set of plugins?
+*** TODO Should creation and management of symlinks be kept separate from the linkage of the plugins?
+*** TODO How do you treat fishdots to the same indirection management process?
+
+* Walkthrough
+
+What would happen when a new user adopts the platform?
+The worst case scenario is that they, like me, have been using some previous dotfiles system for a different shell, that works along similar lines.
+
+** User invokes web install script
+
+#+BEGIN_EXAMPLE fish
+curl http://raw.github.com/blah/fishdots.fish | fish
+#+END_EXAMPLE
+
+This script not only downloads fishdots latest release, but installs it along with the set of known recommended plugins (if desired)
+
+*** TODO create a release of fishdots for download by script
+*** TODO create downloader script =fishdots.fish= that downloads everything else
+
+** downloader script is invoked within a fish shell
+*** TODO download release zip file to tmp dir
+*** TODO unpack release zip into preferred area
+*** TODO Invoke the true bootstrapper script in situ
+*** TODO establish or locate indirection prerequisites (=gens=, =GEN_HOME= env var, =origin= and =default=)
+
