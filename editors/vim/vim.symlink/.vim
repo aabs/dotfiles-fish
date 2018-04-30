@@ -1,0 +1,1 @@
+/home/d235108/.fishdots/editors/vim/vim.symlink/

@@ -8,6 +8,9 @@ clusters:
     certificate-authority: /home/aabs/.minikube/ca.crt
     server: https://192.168.39.145:8443
   name: minikube
+- cluster:
+    server: http://localhost:1087
+  name: prod
 contexts:
 - context:
     cluster: gke_bitnami-ykpklch8ra_us-central1-a_industrial-inference
@@ -17,7 +20,11 @@ contexts:
     cluster: minikube
     user: minikube
   name: minikube
-current-context: minikube
+- context:
+    cluster: prod
+    user: ""
+  name: prod
+current-context: prod
 kind: Config
 preferences: {}
 users:
