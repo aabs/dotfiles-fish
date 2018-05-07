@@ -25,8 +25,8 @@
 set FD_HOME $HOME/.config/fishdots
 mkdir -p $FD_HOME
 cd $FD_HOME
-set -l rel ()
-curl -L https://github.com/aabs/fishdots/releases/download/v0.0.1_alpha/fishdots-0.0.1.tar.gz | tar xzvf -
+set -l latest_release (curl https://raw.githubusercontent.com/aabs/fishdots/feature/nix-bootstrap/latest_release.txt)
+curl -L https://github.com/aabs/fishdots/releases/download/{$latest_release}/fishdots-{$latest_release}.tar.gz | tar xzvf -
 
 
 # 2. Establish a dotfiles management area called `$HOME/.config/fishdots/gens` 
