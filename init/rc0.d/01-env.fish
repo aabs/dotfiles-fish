@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set -x PATH "$HOME/bin" "/usr/local/bin" "$HOME/.fishdots/bin" $PATH
+set -x PATH "$HOME/bin" "/usr/local/bin" "/mnt/sdb2/tools/Elixir/bin" "$HOME/.fishdots/bin" $PATH
 set -x EDITOR vim
 set -U FISHDOTS_PLUGINS_HOME $HOME/.config/fishdots/plugins    
 
@@ -9,6 +9,8 @@ if test -e /mnt/d/
     set -U SYNC_HOME /mnt/d/Synchronised
 else if test -e /d/
     set -U SYNC_HOME /d/Synchronised
+else if test -e /mnt/sdb2/Synchronised
+    set -U SYNC_HOME /mnt/sdb2/Synchronised
 else if test -e /media/aabs/DATA/
     set -U SYNC_HOME /media/aabs/DATA/Synchronised
 else
