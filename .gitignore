@@ -4,3 +4,4 @@ plugins/tmux/tmux.symlink/resurrect
 config.symlink/fish/fishd.Magnesium.x86_64
 tags
 .tags
+*.tar.gz
