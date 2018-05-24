@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if test -z $GEN_ROOT
-    set -x GEN_ROOT $HOME/gens
+    set -x GEN_ROOT $FISHDOTS/../gens
 end
 
 function link -a original_file symlink

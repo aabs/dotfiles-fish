@@ -1,11 +1,12 @@
 #!/usr/bin/env fish
 
 # this is the one env var that needs to be set up prior to the boot process
-set -U FISHDOTS (realpath ~/.fishdots)
-set -U FISHDOTS_CONFIG ~/.config/fishdots
-set -U FISHDOTS_PLUGINS_HOME "$FISHDOTS_CONFIG/plugins"
+set -U FISHDOTS (realpath ~/.config/fishdots/home)
+set -U FISHDOTS_CONFIG ~/.config/fishdots/config
+set -U FISHDOTS_PLUGINS_HOME ~/.config/fishdots/plugins
+
 set -x QUIET_FISHDOTS_BOOT_LOGGING true
-set -g FD_MAX_RUN_LEVEL 5
+set -g FD_MAX_RUN_LEVEL 4
 
 if test $QUIET_FISHDOTS_BOOT_LOGGING  != true
     echo "Welcome to fishdots"
