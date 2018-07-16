@@ -1,11 +1,11 @@
 #!/usr/bin/env fish
 
 # this is the one env var that needs to be set up prior to the boot process
-set -U FISHDOTS (realpath ~/.fishdots)
-set -U FISHDOTS_CONFIG ~/.config/fishdots
-set -U FISHDOTS_PLUGINS_HOME "$FISHDOTS_CONFIG/plugins"
+set -x FISHDOTS (realpath ~/.fishdots)
+set -x FISHDOTS_CONFIG ~/.config/fishdots
+set -x FISHDOTS_PLUGINS_HOME "$FISHDOTS_CONFIG/plugins"
 set -x QUIET_FISHDOTS_BOOT_LOGGING false
-set -g FD_MAX_RUN_LEVEL 5
+set -x FD_MAX_RUN_LEVEL 5
 
 if test $QUIET_FISHDOTS_BOOT_LOGGING  != true
     echo "Welcome to fishdots"
@@ -32,6 +32,19 @@ function running -a message; fecho "    => "    cyan     "$message"; end
 function action  -a message; fecho "[action] "  yellow   "$message"; end
 function warn    -a message; fecho "[warning] " yellow   "$message"; end
 function error   -a message; fecho "[error] "   red      "$message"; end
+
+boot "Gathering Local Configs"
+# this gives the local rc function (that might contain secrets or configs you don't want in a repo)
+# to get a change to set configs in preparation for booting the rest of FD
+if test -f $HOME/localrc.fish
+  $HOME/localrc.fish
+end 
+
+if test -f $HOME/(hostname).localrc.fish
+  source $HOME/(hostname).localrc.fish
+end
+
+
 
 boot "Booting Fishdots"
 # run each of the init scripts in each init level in turn
