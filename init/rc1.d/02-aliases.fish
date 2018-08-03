@@ -38,3 +38,7 @@ end
 # source $(brew --prefix nvm)/nvm.sh
 abbr --add senv 'env | sort'
 abbr --add envup 'source ~/.zshrc'
+abbr --add dc 'docker-compose'
+abbr --add dcu 'docker-compose up -d'
+abbr --add dcd 'docker-compose down'
+abbr --add dcl 'docker-compose logs --follow'
