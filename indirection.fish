@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if test -z $GEN_ROOT
-    set -x GEN_ROOT $FISHDOTS/../gens
+    set -x GEN_ROOT $FISHDOTS/../../gens
 end
 
 function link -a original_file symlink
@@ -173,3 +173,11 @@ function make_matching_originals_indirect -a root home_path -d "move original sy
         make_original_file_indirect $sl $home_path
     end
 end
+
+function install_for_first_time -d "initial one-time call to install fishdots and
+set up folder structure"
+   ensure_origin_generation
+   ensure_default_link
+end
+
+# vim: syntax=fish tw=100 sw=4 ts=4 fdm=expr
