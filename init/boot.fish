@@ -3,6 +3,9 @@
 # this is the one env var that needs to be set up prior to the boot process
 # fishdots should have been persistently set during install.
 #set -U FISHDOTS (realpath ~/.config/fishdots/home)
+if not set -q FISHDOTS
+    echo "env var not set"
+end
 set -U FISHDOTS_CONFIG $FISHDOTS/config
 set -U FISHDOTS_PLUGINS_HOME ~/.config/fishdots/plugins
 
