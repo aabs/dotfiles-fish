@@ -8,7 +8,7 @@ release:
 	git add -A .
 	git commit -m "release $(release_tag) checkin"
 	git tag -f $(release_tag)
-	git push --all --tags --atomic 
+	git push --tags
 
 prep:
 	mkdir -p ~/tmp/fishdots_test
