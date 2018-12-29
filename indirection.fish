@@ -180,7 +180,8 @@ function install_for_first_time -a home_path -d "initial one-time call to instal
 set up folder structure"
    ensure_origin_generation
    ensure_default_link
-   make_matching_originals_indirect $FISHDOTS $home_path
+   stage_matching_files_as_dotfiles $FISHDOTS 'origin' $home_path
+   # make_matching_originals_indirect $FISHDOTS $home_path
 end
 
 # vim: syntax=fish tw=100 sw=4 ts=4 fdm=expr

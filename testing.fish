@@ -21,7 +21,7 @@ end
 
 function run_tests -a test_path -d "description"
   test_existence_of_test_files $test_path 
-  test_creation_of_generation_structure $test_path
+  test_installation $test_path
 end
 
 function setup -d "set everything up"
