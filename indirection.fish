@@ -150,20 +150,22 @@ function stage_matching_files_as_dotfiles -a root gen home_path -d "create a gen
     end
 end
 
-function make_original_file_indirect -a dotfile home_path -d "description"
+function make_original_file_indirect -a original_path home_path -d "description"
     ensure_origin_generation
     if test -z home_path
         set home_path $HOME
     end
     set -l origin_gen (get_origin_path)
-    set -l x (basename -s .symlink $dotfile)
-    set -l original_dotfile "$home_path/.$x"
-    if test -e $original_dotfile #-a ! -L $original_dotfile
-        echo "moving $original_dotfile => $origin_gen/.$x"
-        mv $original_dotfile "$origin_gen/.$x"
-        link "$origin_gen/.$x" $original_dotfile
+    set -l base_name (basename -s .symlink $original_path)
+    set -l path_within_root "$home_path/.$base_name"
+    # if there is no file in the root dir that clashes with what we want to create, then go ahead
+    # and move it
+    if not test -e $path_within_root #-a ! -L $path_within_root
+        echo "moving $original_path => $origin_gen/.$base_name"
+        mv $original_path "$origin_gen/.$base_name"
+        link "$origin_gen/.$base_name" $path_within_root
     else
-        echo "not moving $original_dotfile => $origin_gen/.$x"
+        echo "not moving $path_within_root => $origin_gen/.$base_name"
     end
 end
 

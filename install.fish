@@ -45,7 +45,7 @@ curl -L https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar
 mkdir -p $FISHDOTS/../../gens/original
 mkdir -p $FISHDOTS/../../plugins
 
-set -U GEN_ROOT "$FISHDOTS/../../gens"
+let -U GEN_ROOT "$FISHDOTS/../../gens"
 # 3. Replace all pre-existing scripts with indirect symlinks that 
 #    point to the original files stored in `$HOME/.config/fishdots/gens/original`.
 
