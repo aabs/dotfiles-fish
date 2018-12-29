@@ -23,7 +23,12 @@
 
 # 1. Create a download area, into which the release will be decompressed.
 set -l latest_release (curl https://raw.githubusercontent.com/aabs/fishdots/feature/nix-bootstrap/latest_release.txt)
-set -U FISHDOTS "$HOME/.config/fishdots/home/fishdots-$latest_release"
+
+if set -q FISHDOTS_INSTALL_PATH
+  set -U FISHDOTS "$FISHDOTS_INSTALL_PATH/.config/fishdots/home/fishdots-$latest_release"
+else
+  set -U FISHDOTS "$HOME/.config/fishdots/home/fishdots-$latest_release"
+end
 
 if test -e $FISHDOTS
     echo "Fishdots already installed. Aborting web installer."
@@ -32,7 +37,7 @@ end
 
 mkdir -p $FISHDOTS
 cd $FISHDOTS/..
-curl -L https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzvf -
+curl -L https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzf -
 
 
 # 2. Establish a dotfiles management area called `$HOME/.config/fishdots/gens` 
@@ -49,3 +54,5 @@ mkdir -p $FISHDOTS/../../plugins
 # 5. setup invocation script for fishdots loader
 mkdir -p $HOME/.config/fish
 echo -e "#!/usr/bin/env fish\n\nsource $FISHDOTS/init/boot.fish" >$HOME/.config/fish/config.fish
+source $FISHDOTS/indirection.fish
+install_for_first_time $FISHDOTS_INSTALL_PATH

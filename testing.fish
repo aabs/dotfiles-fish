@@ -16,10 +16,12 @@ function fixture -d "run all the tests"
       echo "all tests passed"
     end
     teardown $test_path
+    cd ~/dev/fishdots
 end
 
 function run_tests -a test_path -d "description"
-   test_existence_of_test_files $test_path 
+  test_existence_of_test_files $test_path 
+  test_creation_of_generation_structure $test_path
 end
 
 function setup -d "set everything up"
@@ -28,7 +30,7 @@ function setup -d "set everything up"
 end
 
 function teardown -a test_path -d "clean up"
-    remove_home_folder_structure $test_path
+    # remove_home_folder_structure $test_path
 end
 
 function on_fail --on-event failed_unit_test -a msg
@@ -77,13 +79,17 @@ end
 ###################################
 
 function test_existence_of_test_files -a test_path 
-  echo "test_existence_of_test_files "
   if not test -e $test_path/.local
     fail "test files were not present"
   end
 end
 
 function test_creation_of_generation_structure -a test_path
+  set -x FISHDOTS_INSTALL_PATH $test_path
+  source ./install.fish
+  if not test -e $test_path/.config/fishdots/home
+    fail "fishdots was not downloaded"
+  end
 end
 
 abbr --add test 'make clean; source testing.fish; fixture'
