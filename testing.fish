@@ -84,11 +84,11 @@ function test_existence_of_test_files -a test_path
   end
 end
 
-function test_creation_of_generation_structure -a test_path
+function test_installation -a test_path
   set -x FISHDOTS_INSTALL_PATH $test_path
   source ./install.fish
   if not test -e $test_path/.config/fishdots/home
-    fail "fishdots was not downloaded"
+    fail "fishdots was not installed properly"
   end
 end
 
