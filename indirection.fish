@@ -158,7 +158,7 @@ function make_original_file_indirect -a dotfile home_path -d "description"
     set -l origin_gen (get_origin_path)
     set -l x (basename -s .symlink $dotfile)
     set -l original_dotfile "$home_path/.$x"
-    if test -e $original_dotfile -a #! -L $original_dotfile
+    if test -e $original_dotfile #-a ! -L $original_dotfile
         echo "moving $original_dotfile => $origin_gen/.$x"
         mv $original_dotfile "$origin_gen/.$x"
         link "$origin_gen/.$x" $original_dotfile

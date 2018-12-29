@@ -1,4 +1,4 @@
-release_tag=0.0.8
+release_tag=0.0.9
 release_contents=bin init editors tools bootstrap.fish indirection.fish install.fish known-plugins.dat profile.symlink README.org
 
 .PHONY: release
