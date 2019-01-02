@@ -1,7 +1,4 @@
 #!/usr/bin/env bash
-function ilog -a msg
-    echo "- ${msg}"
-end
 
 if test -z $GEN_ROOT
     set -x GEN_ROOT $FISHDOTS/../../gens
