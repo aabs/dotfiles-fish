@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+function ilog -a msg
+    echo "- ${msg}"
+end
 
 if test -z $GEN_ROOT
     set -x GEN_ROOT $FISHDOTS/../../gens
@@ -9,7 +12,7 @@ function link -a original_file symlink
 end
 
 function form_index_path -a index
-    echo $GEN_ROOT/generation-$index/
+    echo $GEN_ROOT/generation-$index
 end
 
 function stage_link_to_file_in_index -a path_to_file new_name index
@@ -55,7 +58,7 @@ function get_default_path
 end
 
 function get_origin_path
-    echo "$GEN_ROOT/origin"
+    echo "$GEN_ROOT/generation-origin"
 end
 
 function ensure_default_link -d "create a default dummy link for default"
@@ -180,7 +183,8 @@ function install_for_first_time -a home_path -d "initial one-time call to instal
 set up folder structure"
    ensure_origin_generation
    ensure_default_link
-   stage_matching_files_as_dotfiles $FISHDOTS 'origin' $home_path
+   set -l gen (create_new_gen)
+   stage_matching_files_as_dotfiles $FISHDOTS $gen $home_path
    # make_matching_originals_indirect $FISHDOTS $home_path
 end
 

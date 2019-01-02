@@ -38,12 +38,9 @@ end
 mkdir -p $FISHDOTS
 cd $FISHDOTS/..
 curl -L https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzf -
-mkdir -p $HOME/.config/fish
-echo -e "#!/usr/bin/env fish\n\nsource $FISHDOTS/init/boot.fish" >$HOME/.config/fish/config.fish
 
 # 2. Establish a dotfiles management area called `$HOME/.config/fishdots/gens` 
 #    where all scripts and plugins will be stored
-mkdir -p $FISHDOTS/../../gens/original
 mkdir -p $FISHDOTS/../../plugins
 
 set -U GEN_ROOT "$FISHDOTS/../../gens"
@@ -56,3 +53,5 @@ install_for_first_time $FISHDOTS_INSTALL_PATH
 #    links to the scripts established by default by fishdots.
 
 # 5. setup invocation script for fishdots loader
+mkdir -p $HOME/.config/fish
+echo -e "#!/usr/bin/env fish\n\nsource $FISHDOTS/init/boot.fish" >$HOME/.config/fish/config.fish
