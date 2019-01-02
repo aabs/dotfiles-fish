@@ -61,7 +61,8 @@ end
 function ensure_default_link -d "create a default dummy link for default"
     set -l def_path (get_default_path)
     if not test -e $def_path
-        switch_default_to_new_generation 0        
+        # switch_default_to_new_generation 0
+        switch_default_to_origin
     end
 end
 
