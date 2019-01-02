@@ -15,11 +15,11 @@ function form_index_path -a index
     echo $GEN_ROOT/generation-$index
 end
 
-function stage_link_to_file_in_index -a path_to_file new_name index
-    set -l base (form_index_path $index)
+# function stage_link_to_file_in_index -a path_to_file new_name index
+    # set -l base (form_index_path $index)
     # set -l name (basename $path_to_file)
-    link $path_to_file "$base/$new_name"
-end
+    # link $path_to_file "$base/$new_name"
+# end
 
 function create_default_link -a original_path target_location
     # original path is the name of the thing (e.g.  /a/b/c/blah.ext)
@@ -58,7 +58,7 @@ function get_default_path
 end
 
 function get_origin_path
-    echo "$GEN_ROOT/generation-origin"
+    echo "$GEN_ROOT/origin"
 end
 
 function ensure_default_link -d "create a default dummy link for default"
