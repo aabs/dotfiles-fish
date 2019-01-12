@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-set -x PATH "/mnt/d/tools/anaconda3/bin" "$HOME/bin" "/usr/local/bin" "$HOME/.fishdots/bin" $PATH
+set -x PATH "$HOME/go/bin" "/mnt/d/tools/anaconda3/bin" "$HOME/bin" "/usr/local/bin" "$HOME/.fishdots/bin" $PATH
 set -x EDITOR vim
 set -x FISHDOTS_PLUGINS_HOME $HOME/.config/fishdots/plugins    
 
