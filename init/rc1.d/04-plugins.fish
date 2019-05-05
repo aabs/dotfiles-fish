@@ -3,6 +3,10 @@
 # functions for managing plugins
 
 function plugin
+  if test 0 -eq (count $argv)
+    plugin_help
+    return
+  end
   switch $argv[1]
     case home
       cd $FISHDOTS_PLUGINS_HOME
@@ -19,6 +23,34 @@ function plugin
     case '*'
       plugin_help
   end
+end
+
+function plugin_help
+  echo "Fishdots Plugins Usage"
+  echo "======================"
+  echo "plugin <command> [options] [args]"
+  echo ""
+  plugin_option 'home' 'cd to the plugin root folder' 
+  plugin_option 'install <url> <name>' 'install the plugin identified by the git repo path' 
+  plugin_option "plugin uninstall name" "remove the plugin by name"
+  plugin_option "plugin ls" "  list all installed plugins"
+  plugin_option "plugin sync" "save and push any changes to the plugin"
+  plugin_option "plugin help" "this .. .  ."
+end
+
+complete -c plugin -x -a  home -d "cd to the plugin root folder" 
+complete -c plugin -x -a  install -d "install the plugin identified by the git repo path" 
+complete -c plugin -x -a  plugin -d "remove the plugin by name"
+complete -c plugin -x -a  plugin -d "list all installed plugins"
+complete -c plugin -x -a  plugin -d "save and push any changes to the plugin"
+complete -c plugin -x -a  plugin -d "display usage guide"
+
+# helper function for displaying usage info
+function plugin_option -a name desc
+  colour_print cyan 'plugin '
+  colour_print green "$name "
+  colour_print normal "$desc"
+  echo; echo
 end
 
 function plugin_install -a git_url name
@@ -49,34 +81,9 @@ function plugin_list
   end
 end
 
-function plugin_help
-  echo "Fishdots Plugins Usage"
-  echo "===================="
-  echo "plugin <command> [options] [args]"
-  echo ""
-  echo "plugin install url name"
-  echo "  install the plugin identified by the git repo path into $$FISHDOTS_PLUGINS_HOME/$$name"
-  echo ""
-  echo "plugin uninstall name"
-  echo "  remove the plugin by name"
-  echo ""
-  echo "plugin ls"
-  echo "  list all installed plugins"
-  echo ""
-  echo "plugin save name"
-  echo "  save any changes to the plugin"
-  echo ""
-  echo "plugin sync name"
-  echo "  save and push any changes to the plugin"
-  echo ""
-  echo "plugin help"
-  echo "  this .. .  ."
-end
 
-function plugin_save -a basename -d "save all new or modified notes locally"
-  fishdots_git_save $FISHDOTS_PLUGINS_HOME/$basename "more tinkering"
-end
-
-function plugin_sync -a basename -d "save all notes to origin repo"
-  fishdots_git_sync $FISHDOTS_PLUGINS_HOME/$basename "more tinkering"
+function plugin_sync -d "synchronise all plugin folders"
+  for i in (ls $FISHDOTS_PLUGINS_HOME)
+    fishdots_git_sync $FISHDOTS_PLUGINS_HOME/$i "more tinkering"
+  end
 end
