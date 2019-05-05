@@ -33,3 +33,6 @@ x 2018-03-05 2018-01-29 turn off folding for markdown files in vim +dots
 x 2018-03-05 2018-01-19 get remote access token +thor
 x 2018-03-05 2018-01-22 allow supply of project override on ptask function +dots
 x 2018-03-05 2018-01-24 create dotfile for C:/Users/aabs/AppData/Roaming/Code/User/keybindings.json +dots
+x 2019-05-06 fix issue with todo plugin and git
+x 2019-05-06 create more mnemonic names for notes commands
+x 2019-05-06 make a choice - either todo.txt or find a way to get tasks out of markdown files
