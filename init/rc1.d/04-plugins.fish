@@ -38,19 +38,17 @@ function plugin_help
   plugin_option "plugin help" "this .. .  ."
 end
 
-complete -c plugin -x -a  home -d "cd to the plugin root folder" 
-complete -c plugin -x -a  install -d "install the plugin identified by the git repo path" 
-complete -c plugin -x -a  plugin -d "remove the plugin by name"
-complete -c plugin -x -a  plugin -d "list all installed plugins"
-complete -c plugin -x -a  plugin -d "save and push any changes to the plugin"
-complete -c plugin -x -a  plugin -d "display usage guide"
+complete -c plugin -x -a home -d "cd to the plugin root folder" 
+complete -c plugin -x -a install -d "install the plugin identified by the git repo path" 
+complete -c plugin -x -a uninstall -d "remove the plugin by name"
+complete -c plugin -x -a ls -d "list all installed plugins"
+complete -c plugin -x -a sync -d "save and push any changes to the plugin"
+complete -c plugin -x -a help -d "display usage guide"
 
 # helper function for displaying usage info
 function plugin_option -a name desc
-  colour_print cyan 'plugin '
-  colour_print green "$name "
-  colour_print normal "$desc"
-  echo; echo
+  
+  _fd_display_option 'plugin' $name $desc
 end
 
 function plugin_install -a git_url name

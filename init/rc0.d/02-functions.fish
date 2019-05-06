@@ -46,3 +46,10 @@ end
 function _fd_leave
   popd
 end
+
+function _fd_display_option -a command_name name desc -d 'display a help option formatted'
+  colour_print cyan "$command_name "
+  colour_print green "$name "
+  colour_print normal "$desc"
+  echo
+end
