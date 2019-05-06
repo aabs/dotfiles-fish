@@ -1,3 +1,0 @@
-fix issue with todo plugin and git
-make a choice - either todo.txt or find a way to get tasks out of markdown files
-create more mnemonic names for notes commands
