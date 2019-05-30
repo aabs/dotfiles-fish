@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 #### Geneeral purpose helper functions for fishdots
-function fishdots
+function fishdots_dispatch
   if test 0 -eq (count $argv)
     fishdots_help
     return
@@ -42,10 +42,14 @@ function fishdots_sync -d "save all notes to origin repo"
   fishdots_git_sync $FISHDOTS "more tinkering"
 end
 
-function fishdots_menu
-  set -l options home update sync help
-  menu $options
-  fishdots $options[$menu_selected_index]
+function fishdots
+  if test 0 -eq (count $argv)
+    set -l options home update sync help
+    menu $options
+    fishdots_dispatch $options[$menu_selected_index]
+  else 
+    fishdots_dispatch $argv
+  end
 end
 
 function fishdots_help
