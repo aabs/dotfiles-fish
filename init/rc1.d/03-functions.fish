@@ -42,6 +42,12 @@ function fishdots_sync -d "save all notes to origin repo"
   fishdots_git_sync $FISHDOTS "more tinkering"
 end
 
+function fishdots_menu
+  set -l options home update sync help
+  menu $options
+  fishdots $options[$menu_selected_index]
+end
+
 function fishdots_help
   echo "Fishdots fishdots Usage"
   echo "======================="

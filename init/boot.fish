@@ -44,6 +44,8 @@ if test -f $HOME/(hostname).localrc.fish
   source $HOME/(hostname).localrc.fish
 end
 
+# source third party dependencies
+source $FISHDOTS/tools/fish-menu/menu.fish
 
 
 boot "Booting Fishdots"
