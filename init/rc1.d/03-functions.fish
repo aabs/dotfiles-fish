@@ -42,10 +42,22 @@ function fishdots_sync -d "save all notes to origin repo"
   fishdots_git_sync $FISHDOTS "more tinkering"
 end
 
+function fd_menu -a title
+	set -l menu_hover_item_style -o black -b magenta
+	set -l menu_cursor_glyph ▶
+	set -l menu_cursor_glyph_style -o
+	menu $argv[2..-1]
+end
+
+
 function fishdots
   if test 0 -eq (count $argv)
-    set -l options home update sync help
-    menu $options
+		set -l options  home update sync help
+		fd_menu 'fishdots main menu' $options
+    # set -l menu_hover_item_style -b black -o magenta
+    # set -l menu_cursor_glyph ▶
+		# set -l menu_cursor_glyph_style -o
+    # menu $options
     fishdots_dispatch $options[$menu_selected_index]
   else 
     fishdots_dispatch $argv
