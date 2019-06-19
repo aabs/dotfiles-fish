@@ -1,20 +1,4 @@
-# Standard utility functions to assist with (e.g.) list processing
-
-function size -a list
-  count $list
-end
-
-function head -a list
-  $list[1]
-end
-
-function tail -a list
-  $list[2..-1]
-end
-
-function item -a list index
-  $list[$index]
-end
+#!/usr/bin/env fish
 
 function map -a fn_txt list
   set result ""
@@ -24,3 +8,20 @@ function map -a fn_txt list
   end
   echo $result
 end
+
+function _set -a varName key value -d 'add property to JSON formatted property set using JQ'
+  if test -z $varName
+    set -g $varName "{}"
+  end
+  set -g $varName (echo $$varName | jq ".$key |= \"$value\"")
+end
+
+function _get -a varName key -d 'get property value from JSON formatted property set using JQ'
+  echo $$varName | jq ".$key"
+end
+
+function get_unquoted -a v k
+    set r (string replace -a "\"" "" (_get $v $k))
+    echo (string replace -a "'" "" $r)
+end
+

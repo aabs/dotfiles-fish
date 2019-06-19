@@ -1,5 +1,1 @@
-complete -c fishdots -x -a home -d 'go to the fishdots home directory'
-complete -c fishdots -x -a update  -d 'create a new fishdots'
-complete -c fishdots -x -a save -d 'save changes to fishdots'
-complete -c fishdots -x -a sync -d 'save and get changes to fishdots'
-complete -c fishdots -x -a help -d 'get usage instructions on fishdots'
+complete -c fishdots -x -a "home menu update sync help"

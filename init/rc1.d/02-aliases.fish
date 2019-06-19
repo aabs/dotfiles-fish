@@ -42,3 +42,4 @@ abbr --add dc 'docker-compose'
 abbr --add dcu 'docker-compose up -d'
 abbr --add dcd 'docker-compose down'
 abbr --add dcl 'docker-compose logs --follow'
+abbr --add space_left "df -h | grep xvda3 | awk '{print \$5;}'"

@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 #### Geneeral purpose helper functions for fishdots
-function fishdots_dispatch
+function fishdots
   if test 0 -eq (count $argv)
     fishdots_help
     return
@@ -10,12 +10,14 @@ function fishdots_dispatch
   switch $argv[1]
     case home
       fishdots_home
-    case update
-      fishdots_update
+    case menu
+      fishdots_menu
     case save
       fishdots_save
     case sync
       fishdots_sync
+    case update
+      fishdots_update
     case help
       fishdots_help
     case '*'
@@ -50,7 +52,7 @@ function fd_menu -a title
 end
 
 
-function fishdots
+function fishdots_menu
   if test 0 -eq (count $argv)
 		set -l options  home update sync help
 		fd_menu 'fishdots main menu' $options
