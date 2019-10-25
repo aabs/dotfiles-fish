@@ -1,8 +1,8 @@
 #!/usr/bin/env fish
 
-set -x PATH "$HOME/go/bin" "$HOME/bin" "$HOME/.fishdots/bin" $PATH
+set -x PATH "$HOME/go/bin" "/home/linuxbrew/.linuxbrew/bin" "$HOME/dev/tools/jena/bin" "$HOME/bin" "$HOME/.fishdots/bin" $PATH
 set -x EDITOR nvim
-set -x FISHDOTS_PLUGINS_HOME $HOME/.config/fishdots/plugins    
+set -x FISHDOTS_PLUGINS_HOME $HOME/.config/fishdots/plugins
 
 # too many other things depend on this for their rc0.d loading to put this in a plugin
 if test -e /mnt/d/

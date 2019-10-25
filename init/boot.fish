@@ -4,12 +4,12 @@
 set -x FISHDOTS (realpath ~/.fishdots)
 set -x FISHDOTS_CONFIG ~/.config/fishdots
 set -x FISHDOTS_PLUGINS_HOME "$FISHDOTS_CONFIG/plugins"
-set -x QUIET_FISHDOTS_BOOT_LOGGING true
+set -x QUIET_FISHDOTS_BOOT_LOGGING false
 set -x FD_MAX_RUN_LEVEL 5
 
 if test $QUIET_FISHDOTS_BOOT_LOGGING  != true
     echo "Welcome to fishdots"
-    echo 
+    echo
 end
 
 function colour_print -a colour message
@@ -38,7 +38,7 @@ boot "Gathering Local Configs"
 # to get a change to set configs in preparation for booting the rest of FD
 if test -f $HOME/localrc.fish
   $HOME/localrc.fish
-end 
+end
 
 if test -f $HOME/(hostname).localrc.fish
   source $HOME/(hostname).localrc.fish
@@ -54,7 +54,7 @@ for level in (seq 0 $FD_MAX_RUN_LEVEL)
     if test -e "$FISHDOTS/init/rc"$level".d/"
         ok "Level: $level"
         for script in (find "$FISHDOTS/init/rc"$level".d/" -name "*.fish")
-            running (basename $script)        
+            running (basename $script)
             source $script
         end
     end
@@ -62,7 +62,7 @@ end
 
 # boot to each level on each of the plugins before commencing the next run level
 # that way, if one plugin depends on functions or environment variables established
-# elsewhere, they can be confident to have them present when they make their own definitions 
+# elsewhere, they can be confident to have them present when they make their own definitions
 echo
 boot "Loading Fishdots Plugins"
 for level in (seq 0 $FD_MAX_RUN_LEVEL)
@@ -71,7 +71,7 @@ for level in (seq 0 $FD_MAX_RUN_LEVEL)
         if test -e $plugin/init/rc"$level".d/
             fecho "  => " blue (basename $plugin)
             for script in (find "$plugin/init/rc"$level".d/" -name "*.fish")
-                running (basename $script)        
+                running (basename $script)
                 source $script
             end
         end
