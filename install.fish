@@ -26,7 +26,7 @@
 # curl -skq https://raw.githubusercontent.com/aabs/fishdots/master/install.fish | fish
 
 # 1. Create a download area, into which the release will be decompressed.
-set -l latest_release (curl --no-progress-meter -kq https://raw.githubusercontent.com/aabs/fishdots/master/latest-release.txt)
+set -l latest_release (curl -skq https://raw.githubusercontent.com/aabs/fishdots/master/latest-release.txt)
 
 if not set -q FISHDOTS_INSTALL_PATH
   set -x FISHDOTS_INSTALL_PATH $HOME
