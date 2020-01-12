@@ -20,20 +20,28 @@
 # 4. Establish a first generation `$HOME/.config/fishdots/gens/gen1` that holds
 #    links to the scripts established by default by fishdots.
 
+# One liner install script
+# ========================
+
+# curl --no-progress-meter -kq https://raw.githubusercontent.com/aabs/fishdots/master/install.fish | fish
 
 # 1. Create a download area, into which the release will be decompressed.
-set -l latest_release (curl https://raw.githubusercontent.com/aabs/fishdots/feature/nix-bootstrap/latest_release.txt)
+set -l latest_release (curl --no-progress-meter -kq https://raw.githubusercontent.com/aabs/fishdots/master/latest-release.txt)
 
 if not set -q FISHDOTS_INSTALL_PATH
   set -x FISHDOTS_INSTALL_PATH $HOME
+  echo installing into $FISHDOTS_INSTALL_PATH
 end
 
 set -U FISHDOTS "$FISHDOTS_INSTALL_PATH/.config/fishdots/home/fishdots-$latest_release"
+echo Fishdots home set to $FISHDOTS
 
 if test -e $FISHDOTS
     echo "Fishdots already installed. Aborting web installer."
     exit 1
 end
+
+exit 1
 
 mkdir -p $FISHDOTS
 cd $FISHDOTS/..
