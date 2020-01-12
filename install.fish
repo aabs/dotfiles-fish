@@ -23,7 +23,7 @@
 # One liner install script
 # ========================
 
-# curl --no-progress-meter -kq https://raw.githubusercontent.com/aabs/fishdots/master/install.fish | fish
+# curl -skq https://raw.githubusercontent.com/aabs/fishdots/master/install.fish | fish
 
 # 1. Create a download area, into which the release will be decompressed.
 set -l latest_release (curl --no-progress-meter -kq https://raw.githubusercontent.com/aabs/fishdots/master/latest-release.txt)
