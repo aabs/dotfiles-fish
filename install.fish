@@ -42,11 +42,9 @@ if test -e $FISHDOTS
     exit 1
 end
 
-# return 1
-
-# mkdir -p $FISHDOTS
-# cd $FISHDOTS/..
-# curl -L https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzf -
+mkdir -p $FISHDOTS
+cd $FISHDOTS/..
+curl -L https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzf -
 
 # # 2. Establish a dotfiles management area called `$HOME/.config/fishdots/gens`
 # #    where all scripts and plugins will be stored
