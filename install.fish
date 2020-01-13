@@ -33,6 +33,7 @@ if not set -q FISHDOTS_INSTALL_PATH
   echo installing into $FISHDOTS_INSTALL_PATH
 end
 
+set -e FISHDOTS
 set -U FISHDOTS "$FISHDOTS_INSTALL_PATH/.config/fishdots/home/fishdots-$latest_release"
 echo Fishdots home set to $FISHDOTS
 
