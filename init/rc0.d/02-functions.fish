@@ -1,5 +1,9 @@
 # one or two useful reusable functions for git repos
 
+function fish_greeting -d "intercept the fish greeting and re-emit it so plugins can respond"
+    emit on_fish_greeting
+end
+
 function fishdots_git_branch_name -a abs_path -d "get the git branch name of the supplied directory"
   pushd $abs_path
   git branch | grep '^\*'| cut -d' ' -f 2
@@ -26,7 +30,7 @@ function fishdots_git_sync -a abs_path commit_message -d "save and get any chang
     error "[$abs_path] doesn't seem to be a git repo. Aborting."
     return 1
   end
-  
+
   # then check in any local changes
   fishdots_git_save $abs_path $commit_message
 
