@@ -44,26 +44,43 @@ function fishdots_sync -d "save all notes to origin repo"
   fishdots_git_sync $FISHDOTS "more tinkering"
 end
 
-function fd_menu -a title
-	set -l menu_hover_item_style -o black -b magenta
-	set -l menu_cursor_glyph ▶
+function fd_menu
+	# set -l menu_hover_item_style -o black -b yellow
+	set -l menu_cursor_glyph '>'
 	set -l menu_cursor_glyph_style -o
-	menu $argv[2..-1]
+	menu $argv
+    set -g fd_selected_item (echo $menu_selected_index)
 end
 
 
 function fishdots_menu
   if test 0 -eq (count $argv)
-		set -l options  home update sync help
-		fd_menu 'fishdots main menu' $options
-    # set -l menu_hover_item_style -b black -o magenta
-    # set -l menu_cursor_glyph ▶
-		# set -l menu_cursor_glyph_style -o
-    # menu $options
+    set -l options  home update sync help
+    fd_menu 'fishdots main menu' $options
     fishdots_dispatch $options[$menu_selected_index]
-  else 
+  else
     fishdots_dispatch $argv
   end
+end
+
+function fishdots_search -a root_path pattern -d "find file by full text search"
+    ag -lc "$pattern" $root_path | sort -t: -nrk2 | cut -d':' -f1
+end
+
+function fishdots_find -a root_path pattern -d "find item by name"
+    find $root_path/ -iname "*$pattern*"
+end
+
+function fishdots_find_select -a root_path pattern
+    set -l opts (fishdots_find $root_path $pattern)
+    fd_menu $opts
+    set -g fd_selected_file "$opts[$fd_selected_item]"
+end
+
+function fishdots_search_select -a root_path pattern
+    set -l opts (fishdots_search $root_path $pattern)
+    fd_menu $opts
+    set -g fd_selected_file "$opts[$fd_selected_item]"
 end
 
 function fishdots_help
@@ -92,7 +109,7 @@ function fishdots_help
   echo " this..."
   echo ""
 
-  
+
 end
 
 function _enter_fishdots_home
@@ -102,4 +119,8 @@ end
 
 function _leave_fishdots_home
   popd
+end
+
+function fishdots_select_from -a root_path search_pattern -d "create a menu to choose between the elements found using the search terms"
+  set matches (_note_search "$search_pattern")
 end

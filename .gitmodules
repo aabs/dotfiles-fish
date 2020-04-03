@@ -1,3 +1,0 @@
-[submodule "tools/fish-menu"]
-	path = tools/fish-menu
-	url = https://github.com/fishpkg/fish-menu.git
