@@ -1,5 +1,12 @@
 #!/usr/bin/env fish
 
+if test -f $FISHDOTS/init/helpers.fish
+    source $FISHDOTS/init/helpers.fish
+else
+    error "$FISHDOTS/init/helpers.fish not found. Aborting."
+    exit
+end
+
 source helpers.fish
 
 # this is the one env var that needs to be set up prior to the boot process
