@@ -10,15 +10,6 @@ function define_command -a prefix_name summary -d "create a command prefix"
     _define_help_subcommand $prefix_name
 end
 
-function _define_help_subcommand -a prefix_name
-    set -l ev "on_"$prefix_name"_help"
-    echo The event will be $ev
-    define_subcommand $prefix_name "help" $ev "Display help for command $prefix_name"
-
-    # create an event handler for displaying the help for this command
-    eval 'function __'$prefix_name'_help -e '$ev' ; _display_command_help_for '$prefix_name'; end'
-end
-
 function define_subcommand -a prefix_name command_name event_name summary -d "create a command prefix"
     _define_subcommand $prefix_name $command_name $event_name $summary
     _define_subcommand_completion  $prefix_name $command_name $summary
@@ -45,20 +36,22 @@ function _define_command -a prefix_name summary -d "create a command prefix"
 end
 
 function _define_command_completion -a prefix summary
-    complete -c $prefix -x -d $summary
+    complete -x -c "$prefix" -d "$summary"
 end
 
 function _define_subcommand_completion -a prefix subcmd summary
-    complete -c $prefix -x -a $subcmd -d $summary
+    complete -x -c "$prefix" -a "$subcmd" -d "$summary"
 end
 
 function _display_command_help_for -a prefix_name -d "display usage text for command"
     set -l x "_subcommand_names_$prefix_name"
-    set -l header "Command Usage: $prefix_name"
+    set -l cmd_summary "_command_summary_$prefix_name"
+    set -l header "Command Usage for $prefix_name"
     echo $header
-    for i in (seq 1 (string length $header))
-        echo -n "="
-    end
+    _underline $header '-'
+    echo $$cmd_summary
+    echo
+    echo $prefix_name" <command> [options] [args]"
     echo
 
     for subcommand in $$x
@@ -66,6 +59,13 @@ function _display_command_help_for -a prefix_name -d "display usage text for com
         echo -e "$prefix_name $subcommand\t"$$y
     end
 
+end
+
+function _underline -a str ul -d "create an underlined version of a string"
+    for i in (seq 1 (string length $str))
+        echo -n $ul
+    end
+    echo
 end
 
 function _define_command_dispatcher -a prefix -d "creates a function to dispatch subcommands for top level command"
@@ -86,4 +86,12 @@ function _define_command_dispatcher -a prefix -d "creates a function to dispatch
     end
 
     eval 'function '$prefix' ; _dispatch_ '$prefix' $argv; end'
+end
+
+function _define_help_subcommand -a prefix_name
+    set -l ev "on_"$prefix_name"_help"
+    define_subcommand $prefix_name "help" $ev "Display help for command $prefix_name"
+
+    # create an event handler for displaying the help for this command
+    eval 'function __'$prefix_name'_help -e '$ev' ; _display_command_help_for '$prefix_name'; end'
 end
