@@ -19,6 +19,8 @@ if set -q FISHDOTS_SUPPRESS_BOOT_LOGGING
     echo
 end
 
+mkdir -p $FISHDOTS_PLUGINS_HOME
+
 boot "Gathering Local Configs"
 
 # this gives the local rc function (that might contain secrets or configs you
