@@ -1,46 +1,28 @@
 #!/usr/bin/env fish
 
-#### Geneeral purpose helper functions for fishdots
-function fishdots
-  if test 0 -eq (count $argv)
-    fishdots_help
-    return
-  end
+define_command fishdots "main command for controlling fishdots"
+define_subcommand fishdots home on_fishdots_home "switch to fishdots home folder"
+define_subcommand fishdots menu on_fishdots_menu "display the menu for fishdots"
+define_subcommand fishdots save on_fishdots_save "save any changes to your fishdots locally"
+define_subcommand fishdots sync on_fishdots_sync "save any changes to your fishdots locally and push to origin"
+define_subcommand fishdots update on_fishdots_update "pull any changes to fishdots down from github"
 
-  switch $argv[1]
-    case home
-      fishdots_home
-    case menu
-      fishdots_menu
-    case save
-      fishdots_save
-    case sync
-      fishdots_sync
-    case update
-      fishdots_update
-    case help
-      fishdots_help
-    case '*'
-      fishdots_help
-  end
-end
-
-function fishdots_home -d "cd to fishdots directory"
+function fishdots_home -e on_fishdots_home -d "cd to fishdots directory"
   _enter_fishdots_home
 end
 
-function fishdots_update -d "get the latest version of fishdots and each of its plugins"
+function fishdots_update -e on_fishdots_update -d "get the latest version of fishdots and each of its plugins"
   fishdots_sync
   for p in (find $FISHDOTS_PLUGINS_HOME -maxdepth 1 -mindepth 1 -type d)
     plugin sync (basename $p)
   end
 end
 
-function fishdots_save -d "save all new or modified notes locally"
+function fishdots_save -e on_fishdots_save -d "save all new or modified notes locally"
   fishdots_git_save $FISHDOTS "more tinkering"
 end
 
-function fishdots_sync -d "save all notes to origin repo"
+function fishdots_sync -e on_fishdots_sync -d "save all notes to origin repo"
   fishdots_git_sync $FISHDOTS "more tinkering"
 end
 
@@ -53,7 +35,7 @@ function fd_menu
 end
 
 
-function fishdots_menu
+function fishdots_menu -e on_fishdots_menu
   if test 0 -eq (count $argv)
     set -l options  home update sync help
     fd_menu 'fishdots main menu' $options
@@ -81,35 +63,6 @@ function fishdots_search_select -a root_path pattern
     set -l opts (fishdots_search $root_path $pattern)
     fd_menu $opts
     set -g fd_selected_file "$opts[$fd_selected_item]"
-end
-
-function fishdots_help
-  echo "Fishdots fishdots Usage"
-  echo "======================="
-  echo "fishdots <command> [options] [args]"
-  echo ""
-
-  echo "fishdots home"
-  echo " go to the fishdots home directory"
-  echo ""
-
-  echo "fishdots update"
-  echo " sync fishdots as well as all its plugins"
-  echo ""
-
-  echo "fishdots save"
-  echo " save any changes to fishdots"
-  echo ""
-
-  echo "fishdots sync"
-  echo " save and get any changes to fishdots"
-  echo ""
-
-  echo "fishdots help"
-  echo " this..."
-  echo ""
-
-
 end
 
 function _enter_fishdots_home
