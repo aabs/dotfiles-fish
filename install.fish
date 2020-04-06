@@ -55,4 +55,13 @@ ln -fs $FISHDOTS $HOME/.fishdots
 # now ensure FD gets loaded during fish shell start process
 
 touch $HOME/.config/fish/config.fish
-echo -e "\n\nsource ~/.fishdots/init/boot.fish" >> $HOME/.config/fish/config.fish
+
+set loader_lines_found (grep -s 'fishdots/init/boot.fish' ~/.config/fish/config.fish | wc -l)
+
+if test $loader_lines_found -le 1
+  echo "Configuring fishdots to run on start"
+  echo -e "\n\nsource ~/.fishdots/init/boot.fish" >> $HOME/.config/fish/config.fish
+else
+  echo "Fishdots already configured to run on start"
+end
+
