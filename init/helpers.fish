@@ -7,7 +7,7 @@ function colour_print -a colour message
 end
 
 function fecho -a icon icon_colour msg  -d "display text with  (prefix, colour) msg"
-    if set -q QUIET_FISHDOTS_BOOT_LOGGING
+    if set -q FISHDOTS_SUPPRESS_BOOT_LOGGING
         colour_print $icon_colour $icon
         colour_print normal $msg
         echo

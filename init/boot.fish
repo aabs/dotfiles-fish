@@ -14,10 +14,9 @@ source helpers.fish
 setu_ifndef FISHDOTS "$HOME/.fishdots"
 setu_ifndef FISHDOTS_CONFIG ~/.config/fishdots
 setu_ifndef FISHDOTS_PLUGINS_HOME "$FISHDOTS_CONFIG/plugins"
-setu_ifndef QUIET_FISHDOTS_BOOT_LOGGING true
 setu_ifndef FD_MAX_RUN_LEVEL 5
 
-if set -q QUIET_FISHDOTS_BOOT_LOGGING
+if set -q FISHDOTS_SUPPRESS_BOOT_LOGGING
     echo "Welcome to fishdots"
     echo
 end
