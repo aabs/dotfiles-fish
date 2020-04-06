@@ -38,7 +38,7 @@ boot "Booting Fishdots"
 for level in (seq 0 $FD_MAX_RUN_LEVEL)
     if test -e "$FISHDOTS/init/rc"$level".d/"
         ok "Level: $level"
-        for script in (find "$FISHDOTS/init/rc"$level".d/" -name "*.fish")
+        for script in (find "$FISHDOTS/init/rc"$level".d/" -name "*.fish" 2>/dev/null)
             running (basename $script)
             source $script
         end
@@ -54,10 +54,10 @@ echo
 boot "Loading Fishdots Plugins"
 for level in (seq 0 $FD_MAX_RUN_LEVEL)
     ok "Level: $level"
-    for plugin in (find $FISHDOTS_PLUGINS_HOME -maxdepth 1 -mindepth 1 -type d -not -iname "_*")
+    for plugin in (find $FISHDOTS_PLUGINS_HOME -maxdepth 1 -mindepth 1 -type d -not -iname "_*"  2>/dev/null)
         if test -e $plugin/init/rc"$level".d/
             fecho "  => " blue (basename $plugin)
-            for script in (find "$plugin/init/rc"$level".d/" -name "*.fish")
+            for script in (find "$plugin/init/rc"$level".d/" -name "*.fish"  2>/dev/null)
                 running (basename $script)
                 source $script
             end
