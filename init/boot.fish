@@ -7,8 +7,6 @@ else
     exit
 end
 
-source helpers.fish
-
 # this is the one env var that needs to be set up prior to the boot process
 
 setu_ifndef FISHDOTS "$HOME/.fishdots"
