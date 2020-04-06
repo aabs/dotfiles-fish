@@ -14,11 +14,14 @@ function _define_help_subcommand -a prefix_name
     set -l ev "on_"$prefix_name"_help"
     echo The event will be $ev
     define_subcommand $prefix_name "help" $ev "Display help for command $prefix_name"
-    define_subcommand $prefix_name "help2" $ev "Display help2 for command $prefix_name"
+
+    # create an event handler for displaying the help for this command
+    eval 'function __'$prefix_name'_help -e '$ev' ; _display_command_help_for '$prefix_name'; end'
 end
 
 function define_subcommand -a prefix_name command_name event_name summary -d "create a command prefix"
     _define_subcommand $prefix_name $command_name $event_name $summary
+    _define_subcommand_completion  $prefix_name $command_name $summary
 end
 
 function _define_subcommand -a prefix_name command_name event_name summary -d "create a command prefix impl"
@@ -30,7 +33,7 @@ function _define_subcommand -a prefix_name command_name event_name summary -d "c
     eval "set -U $x \$$x $command_name"
     eval "set -U _subcommand_event_$prefix_name_$command_name '$event_name'"
     eval "set -U _subcommand_summary_$prefix_name_$command_name '$summary'"
-    echo "sub command '$prefix_name $command_name' was defined"
+    #echo "sub command '$prefix_name $command_name' was defined"
 end
 
 function _define_command -a prefix_name summary -d "create a command prefix"
@@ -43,7 +46,11 @@ function _define_command -a prefix_name summary -d "create a command prefix"
 end
 
 function _define_command_completion -a prefix summary
-    complete -c $prefix -x -a $summary
+    complete -c $prefix -x -d $summary
+end
+
+function _define_subcommand_completion -a prefix subcmd summary
+    complete -c $prefix -x -a $subcmd -d $summary
 end
 
 function _display_command_help_for -a prefix_name -d "display usage text for command"
@@ -65,42 +72,23 @@ end
 function _define_command_dispatcher -a prefix -d "creates a function to dispatch subcommands for top level command"
 
     function _dispatch_ -a prefix
-        set -l x (count $argv)
-        echo x was $x
+        set -l argcount (count $argv)
 
-        if test 1 -eq $x
+        if test 1 -eq $argcount
             _display_command_help_for $prefix
-            echo $prefix ":" $argv
             return
         end
-        
-        echo "xyzzy $prefix"
 
+        set -l subcmds "_subcommand_names_$prefix"
+        set -l sub $argv[2]
+        set -l rest $argv[3..8]
+        set -l ev "_subcommand_event_$prefix_$sub"
+        eval "emit $$ev $rest"
     end
 
     eval 'function '$prefix' ; _dispatch_ '$prefix' $argv; end'
 end
 
-function fishdots
-  if test 0 -eq (count $argv)
-    fishdots_help
-    return
-  end
-
-  switch $argv[1]
-    case home
-      fishdots_home
-    case menu
-      fishdots_menu
-    case save
-      fishdots_save
-    case sync
-      fishdots_sync
-    case update
-      fishdots_update
-    case help
-      fishdots_help
-    case '*'
-      fishdots_help
-  end
+function test_consumer -a msg -e on_beep_help
+    echo "Bim Bong $msg"
 end
