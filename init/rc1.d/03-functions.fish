@@ -8,7 +8,7 @@ define_subcommand fishdots sync on_fishdots_sync "save any changes to your fishd
 define_subcommand fishdots update on_fishdots_update "pull any changes to fishdots down from github"
 
 function fishdots_home -e on_fishdots_home -d "cd to fishdots directory"
-  _enter_fishdots_home
+  cd $FISHDOTS
 end
 
 function fishdots_update -e on_fishdots_update -d "get the latest version of fishdots and each of its plugins"
@@ -33,7 +33,6 @@ function fd_menu
 	menu $argv
     set -g fd_selected_item (echo $menu_selected_index)
 end
-
 
 function fishdots_menu -e on_fishdots_menu
   if test 0 -eq (count $argv)
@@ -63,15 +62,6 @@ function fishdots_search_select -a root_path pattern
     set -l opts (fishdots_search $root_path $pattern)
     fd_menu $opts
     set -g fd_selected_file "$opts[$fd_selected_item]"
-end
-
-function _enter_fishdots_home
-  pushd .
-  cd $FISHDOTS
-end
-
-function _leave_fishdots_home
-  popd
 end
 
 function fishdots_select_from -a root_path search_pattern -d "create a menu to choose between the elements found using the search terms"
