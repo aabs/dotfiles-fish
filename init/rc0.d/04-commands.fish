@@ -33,7 +33,6 @@ function _define_subcommand -a prefix_name command_name event_name summary -d "c
     eval "set -U $x \$$x $command_name"
     eval "set -U _subcommand_event_$prefix_name_$command_name '$event_name'"
     eval "set -U _subcommand_summary_$prefix_name_$command_name '$summary'"
-    #echo "sub command '$prefix_name $command_name' was defined"
 end
 
 function _define_command -a prefix_name summary -d "create a command prefix"
@@ -87,8 +86,4 @@ function _define_command_dispatcher -a prefix -d "creates a function to dispatch
     end
 
     eval 'function '$prefix' ; _dispatch_ '$prefix' $argv; end'
-end
-
-function test_consumer -a msg -e on_beep_help
-    echo "Bim Bong $msg"
 end
