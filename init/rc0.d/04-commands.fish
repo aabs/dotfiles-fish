@@ -81,7 +81,7 @@ function _define_command_dispatcher -a prefix -d "creates a function to dispatch
         set -l subcmds "_subcommand_names_$prefix"
         set -l sub $argv[2]
         set -l rest $argv[3..8]
-        set -l ev "_subcommand_event_$prefix_$sub"
+        set -l ev "_subcommand_event_"$prefix"_$sub"
         eval "emit $$ev $rest"
     end
 
