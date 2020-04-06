@@ -48,6 +48,7 @@ end
 mkdir -p $FISHDOTS
 cd $FISHDOTS/..
 curl -sL https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzf -
+mkdir -p $FISHDOTS/plugins
 
 # now place an easy link to fishdots in the home folder
 ln -fs $FISHDOTS $HOME/.fishdots
