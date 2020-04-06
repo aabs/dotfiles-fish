@@ -56,9 +56,7 @@ ln -fs $FISHDOTS $HOME/.fishdots
 
 touch $HOME/.config/fish/config.fish
 
-set loader_lines_found (grep -s 'fishdots/init/boot.fish' ~/.config/fish/config.fish | wc -l)
-
-if test $loader_lines_found -le 1
+if test (grep -s 'fishdots/init/boot.fish' $HOME/.config/fish/config.fish | wc -l) -lt 1
   echo "Configuring fishdots to run on start"
   echo -e "\n\nsource ~/.fishdots/init/boot.fish" >> $HOME/.config/fish/config.fish
 else
