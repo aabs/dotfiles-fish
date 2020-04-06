@@ -47,7 +47,7 @@ end
 # create the new install folder and extract the latest release into it
 mkdir -p $FISHDOTS
 cd $FISHDOTS/..
-curl -L https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzf -
+curl -sL https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzf -
 
 # now place an easy link to fishdots in the home folder
 ln -fs $FISHDOTS $HOME/.fishdots
