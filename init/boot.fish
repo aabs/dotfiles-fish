@@ -29,9 +29,6 @@ boot "Gathering Local Configs"
 run_ifexists $HOME/localrc.fish
 run_ifexists $HOME/(hostname).localrc.fish
 
-# source third party dependencies
-run_ifexists $FISHDOTS/tools/fish-menu/menu.fish
-
 boot "Booting Fishdots"
 # run each of the init scripts in each init level in turn
 for level in (seq 0 $FD_MAX_RUN_LEVEL)

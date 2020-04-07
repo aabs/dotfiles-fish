@@ -14,6 +14,10 @@ function define_subcommand -a prefix_name command_name event_name summary -d "cr
     _define_subcommand $prefix_name $command_name $event_name $summary
     _define_subcommand_completion  $prefix_name $command_name $summary
 end
+function define_subcommand_nonevented -a prefix_name command_name function_name summary -d "create a command prefix"
+    _define_subcommand_nonevented $prefix_name $command_name $function_name $summary
+    _define_subcommand_completion  $prefix_name $command_name $summary
+end
 
 function _define_subcommand -a prefix_name command_name event_name summary -d "create a command prefix impl"
     # erase definitions for event and summary
@@ -26,13 +30,23 @@ function _define_subcommand -a prefix_name command_name event_name summary -d "c
     eval "set -U _subcommand_summary_$prefix_name_$command_name '$summary'"
 end
 
+function _define_subcommand_nonevented -a prefix_name command_name function_name summary -d "create a command prefix impl"
+    # erase definitions for event and summary
+    eval "set -e _subcommand_function_$prefix_name_$command_name"
+    eval "set -e _subcommand_summary_$prefix_name_$command_name"
+
+    set -l x "_subcommand_names_$prefix_name"
+    eval "set -U $x \$$x $command_name"
+    eval "set -U _subcommand_function_"$prefix_name"_"$command_name" '$function_name'"
+    eval "set -U _subcommand_summary_$prefix_name_$command_name '$summary'"
+end
+
 function _define_command -a prefix_name summary -d "create a command prefix"
     eval "set -e _subcommand_names_$prefix_name"
     if not contains $prefix_name $_command_names
         set -U _command_names $_command_names $prefix_name
         eval "set -U _command_summary_$prefix_name '$summary'"
     end
-
 end
 
 function _define_command_completion -a prefix summary
@@ -82,7 +96,13 @@ function _define_command_dispatcher -a prefix -d "creates a function to dispatch
         set -l sub $argv[2]
         set -l rest $argv[3..8]
         set -l ev "_subcommand_event_"$prefix"_$sub"
-        eval "emit $$ev $rest"
+        if set -q $ev
+            eval "emit $$ev $rest"
+        end
+        set -l fn "_subcommand_function_"$prefix"_$sub"
+        if set -q $fn
+            eval "$$fn $rest"
+        end
     end
 
     eval 'function '$prefix' ; _dispatch_ '$prefix' $argv; end'
