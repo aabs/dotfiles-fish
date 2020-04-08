@@ -12,10 +12,9 @@ function fishdots_home -e on_fishdots_home -d "cd to fishdots directory"
 end
 
 function fishdots_update -e on_fishdots_update -d "get the latest version of fishdots and each of its plugins"
-    fishdots_sync
-    for p in (find $FISHDOTS_PLUGINS_HOME -maxdepth 1 -mindepth 1 -type d)
-        plugin sync (basename $p)
-    end
+    fishdots_home
+    git pull origin master
+    prevd
 end
 
 function fishdots_save -e on_fishdots_save -d "save all new or modified notes locally"
