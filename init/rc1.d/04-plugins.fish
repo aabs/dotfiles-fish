@@ -13,7 +13,7 @@ define_subcommand plugin uninstall on_plugin_uninstall "uninstall a plugin"
 function plugin_install -e on_plugin_install -a git_url name
     _fd_enter $FISHDOTS_PLUGINS_HOME
 
-    if test -n $name
+    if not test -n $name
       if test -e $name
           colour_print brred "  => Plugin $name is already installed"; echo
       end
@@ -25,7 +25,7 @@ function plugin_install -e on_plugin_install -a git_url name
 end
 
 function plugin_installfrom -a spec_path -d "install all plugins in file supplied"
-    colour_print brgreen "Installing plugins:"
+    colour_print brwhite "Installing plugins:"; echo; echo
     while read --line -la line
         plugin install $line
     end <$spec_path
