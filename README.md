@@ -4,6 +4,9 @@ A fish shell [dotfile](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_dire
 
 Under the hood, it makes use of [fish shell's](https://fishshell.com/) eventing mechanism to allow extensibility to events, and many key pieces of functionality are scheduled through events.  That means you can hook into those events to provide your own additional functionality.  For example, it use it to keep transcripts of what I do, or to push events through to IFTTT to allow easy CLI tweeting.
 
+[![asciicast](https://asciinema.org/a/317693.svg)](https://asciinema.org/a/317693)
+
+
 ## Quick Start
 
 On your command line, you just need to run this:
