@@ -5,16 +5,16 @@ define_subcommand fishdots home on_fishdots_home "switch to fishdots home folder
 define_subcommand fishdots menu on_fishdots_menu "display the menu for fishdots"
 define_subcommand fishdots save on_fishdots_save "save any changes to your fishdots locally"
 define_subcommand fishdots sync on_fishdots_sync "save any changes to your fishdots locally and push to origin"
-define_subcommand fishdots update on_fishdots_update "pull any changes to fishdots down from github"
+define_subcommand_nonevented fishdots update fishdots_update "pull any changes to fishdots down from github"
 
 function fishdots_home -e on_fishdots_home -d "cd to fishdots directory"
     cd $FISHDOTS
 end
 
-function fishdots_update -e on_fishdots_update -d "get the latest version of fishdots and each of its plugins"
-    fishdots_home
-    git pull origin master
-    prevd
+function fishdots_update -d "get the latest version of fishdots and each of its plugins"
+    # just run the installer which will pull down the latest version and link it to ~/.fishdots (leaves the old version lying around)
+    set -l OLDFD $FISHDOTS
+    curl -skLq bit.ly/fishdots_install | fish
 end
 
 function fishdots_save -e on_fishdots_save -d "save all new or modified notes locally"
