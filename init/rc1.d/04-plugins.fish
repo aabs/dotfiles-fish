@@ -17,7 +17,7 @@ function plugin_install -e on_plugin_install -a git_url name
         warn "Plugin is already installed"
     end
 
-    git clone $git_url $name
+    git clone -q $git_url $name
     _fd_leave
 end
 
