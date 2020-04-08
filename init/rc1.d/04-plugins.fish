@@ -14,23 +14,19 @@ function plugin_install -e on_plugin_install -a git_url name
     _fd_enter $FISHDOTS_PLUGINS_HOME
 
     if test -e $name
-        warn "Plugin is already installed"
+        colour_print brred "  => Plugin $name is already installed"
     end
 
     git clone -q $git_url $name
-    running "installed $git_url"
+    colour_print brgreen "  => installed $git_url"
     _fd_leave
 end
 
 function plugin_installfrom -a spec_path -d "install all plugins in file supplied"
-    ok "Installing plugins:"
-    while read --line -la line
-        echo "  - "$line
-    end < $spec_path
-
+    colour_print brgreen "Installing plugins:"
     while read --line -la line
         plugin install $line
-    end < $spec_path
+    end <$spec_path
 end
 
 function plugin_home -e on_plugin_home
