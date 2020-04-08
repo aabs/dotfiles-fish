@@ -18,10 +18,16 @@ function plugin_install -e on_plugin_install -a git_url name
     end
 
     git clone -q $git_url $name
+    running "installed $git_url"
     _fd_leave
 end
 
 function plugin_installfrom -a spec_path -d "install all plugins in file supplied"
+    ok "Installing plugins:"
+    while read --line -la line
+        echo "  - "$line
+    end < $spec_path
+
     while read --line -la line
         plugin install $line
     end < $spec_path
