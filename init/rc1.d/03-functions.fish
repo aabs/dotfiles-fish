@@ -22,8 +22,8 @@ function fishdots_save -e on_fishdots_save -d "save all new or modified notes lo
     fishdots_git_save $FISHDOTS "more tinkering"
 end
 
-function fishdots_sync -e on_fishdots_sync -d "save all notes to origin repo"
-    fishdots_git_sync $FISHDOTS "more tinkering"
+function fishdots_sync -e on_fishdots_sync -a msg -d "save all notes to origin repo"
+    fishdots_git_sync $FISHDOTS "$msg"
 end
 
 function fd_menu
