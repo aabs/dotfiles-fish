@@ -12,13 +12,6 @@ define_subcommand plugin uninstall on_plugin_uninstall "uninstall a plugin"
 
 function plugin_install -e on_plugin_install -a git_url name
     _fd_enter $FISHDOTS_PLUGINS_HOME
-
-    if not test -n $name
-      if test -e $name
-          colour_print brred "  => Plugin $name is already installed"; echo
-      end
-    end
-
     git clone -q $git_url $name
     colour_print brgreen "  => installed $git_url"; echo
     _fd_leave
