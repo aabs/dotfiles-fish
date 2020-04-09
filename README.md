@@ -1,57 +1,29 @@
 # fishdots
 
-A fish shell [dotfile](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments) and plugin framework.  It started out as a simple system to load dotfiles, but over time it has morphed into a system based around plugins that allows unlimited extensibility.
+A fish shell [dotfile](https://en.wikipedia.org/wiki/Hidden_file_and_hidden_directory#Unix_and_Unix-like_environments) and plugin framework. Initially a simple system to load dotfiles; over time it has morphed into a well-structured system based around plugins allowing unlimited and easy extensibility.  Follow the links below to see just how easy it is to use and extend.
 
-Under the hood, it makes use of [fish shell's](https://fishshell.com/) eventing mechanism to allow extensibility to events, and many key pieces of functionality are scheduled through events.  That means you can hook into those events to provide your own additional functionality.  For example, it use it to keep transcripts of what I do, or to push events through to IFTTT to allow easy CLI tweeting.
+* [Getting Started](https://github.com/aabs/fishdots/wiki/Getting-started)
+* [Using fishdots](https://github.com/aabs/fishdots/wiki/Using-fishdots)
+* [Handling dotfiles](https://github.com/aabs/fishdots/wiki/Handling-dotfiles)
+* [Installing and Managing Plugins](https://github.com/aabs/fishdots/wiki/Installing-and-Managing-Plugins)
+* [Plugins](https://github.com/aabs/fishdots/wiki/plug-ins)
+* [Machine specific configurations](https://github.com/aabs/fishdots/wiki/Machine-specific-configurations)
+* [How config files are loaded](https://github.com/aabs/fishdots/wiki/How-config-files-are-loaded)
+* [Creating your own plug in](https://github.com/aabs/fishdots/wiki/Creating-your-own-plug-in)
+* [Creating commands](https://github.com/aabs/fishdots/wiki/Creating-commands)
+* [Standard environment variables](https://github.com/aabs/fishdots/wiki/Standard-environment-variables)
+* [Standard utility functions](https://github.com/aabs/fishdots/wiki/Standard-utility-functions)
 
-[![asciicast](https://asciinema.org/a/317693.svg)](https://asciinema.org/a/317693)
+## Installation
 
-
-## Quick Start
-
-On your command line, you just need to run this:
+Installation is really easy.  Just run this on the command line.  Make sure you have [fish shell](https://fishshell.com/) installed first.
 
 ```shell
 curl -skLq bit.ly/fishdots_install | fish
 ```
 
-To bulk install your preferred plugins. You use the `installfrom` command:
+Here's what happens when you install fishdots and pull down some plugins.
 
-```
-plugin installfrom ~/fishdots_plugins.txt
-```
+[![asciicast](https://asciinema.org/a/317693.svg)](https://asciinema.org/a/317693)
 
-you need to create a list of the plugins that you want installed, before invoking `installfrom`.  These can come from any git repo (but it must be a URL that Git understands).  
-
-Here's my spec:
-
-```
-https://github.com/aabs/fishdots_checklist.git
-https://github.com/aabs/fishdots_clipboard.git
-https://github.com/aabs/fishdots_crm.git
-https://github.com/aabs/fishdots_devdirs.git
-https://github.com/aabs/fishdots_git.git
-https://github.com/aabs/fd_idea.git
-https://github.com/aabs/fishdots_k8s.git
-https://github.com/aabs/fishdots_kafka.git
-https://github.com/aabs/fishdots_kops.git
-https://github.com/aabs/fishdots_lob.git
-https://github.com/aabs/fishdots_nixos.git
-https://github.com/aabs/fishdots_notes.git
-https://github.com/aabs/fishdots_problem.git
-https://github.com/aabs/fishdots_projects.git
-https://github.com/aabs/fishdots_sparql.git
-https://github.com/aabs/fishdots_tech.git
-https://github.com/aabs/fishdots_timekeeping.git
-https://github.com/aabs/fishdots_tmux.git
-https://github.com/aabs/fishdots_todo.git
-https://github.com/aabs/fishdots_transcript.git
-```
-
-You can, of course, install these individually as you need them.  Just use the `install` command like this:
-
-```
-plugin install https://github.com/aabs/fishdots_checklist.git
-```
-
-Now, when you start fish, the fishdots framework will run in the background defining various commands and abbreviations.
+find out more [here](https://github.com/aabs/fishdots/wiki/Getting-started)

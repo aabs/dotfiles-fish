@@ -69,7 +69,7 @@ function _display_command_help_for -a prefix_name -d "display usage text for com
     echo
 
     for subcommand in $$x
-        set -l y "_subcommand_summary_$prefix_name_$subcommand"
+        set -l y "_subcommand_summary_"$prefix_name"_"$subcommand
         echo -e "$prefix_name $subcommand\t"$$y
     end
 
