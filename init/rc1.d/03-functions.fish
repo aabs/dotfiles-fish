@@ -33,6 +33,52 @@ function fd_menu
     set -g fd_selected_item (echo $menu_selected_index)
 end
 
+function fd_file_selector -a root_path pattern -d "nice file selector"
+    set -e fd_selected_item
+    set -l matches (fishdots_find $root_path $pattern)
+    if test 1 -eq (count $matches) and test -d $matches
+        set -g fd_selected_item $matches[1]
+        return
+    end
+    set -g dcmd "dialog --stdout --no-tags --menu 'select the project' 20 60 20 "
+    set c 1
+    for option in $matches
+        set label (basename $option)
+        set -g dcmd "$dcmd $option '$c $label'"
+        set c (math $c + 1)
+    end
+    set choice (eval "$dcmd")
+    clear
+    if test $status -eq 0
+        set -g fd_selected_item $choice
+    end
+end
+
+function fd_item_selector -d "nice file selector"
+    set -e fd_selected_item
+    set -l matches $argv
+    if test 1 -eq (count $matches) and test -d $matches
+        set -g fd_selected_item $matches[1]
+        return
+    end
+    set -g dcmd "dialog --stdout --no-tags --menu 'select the project' 20 60 20 "
+    set c 1
+    for option in $matches
+        if test -e $option
+            set label (basename $option)
+        else
+            set label $option
+        end
+        set -g dcmd "$dcmd $option '$c $label'"
+        set c (math $c + 1)
+    end
+    set choice (eval "$dcmd")
+    clear
+    if test $status -eq 0
+        set -g fd_selected_item $choice
+    end
+end
+
 function fishdots_menu -e on_fishdots_menu
     if test 0 -eq (count $argv)
         set -l options home update sync help
@@ -53,8 +99,8 @@ end
 
 function fishdots_find_select -a root_path pattern
     set -l opts (fishdots_find $root_path $pattern)
-    fd_menu $opts
-    set -g fd_selected_file "$opts[$fd_selected_item]"
+    fd_item_selector $opts
+    set -g fd_selected_file "$fd_selected_item"
 end
 
 function fishdots_search_select -a root_path pattern

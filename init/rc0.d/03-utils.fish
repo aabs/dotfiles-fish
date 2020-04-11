@@ -13,11 +13,13 @@ function _set -a varName key value -d 'add property to JSON formatted property s
   if test -z $varName
     set -g $varName "{}"
   end
-  set -g $varName (echo $$varName | jq ".$key |= \"$value\"")
+  set -g $varName (echo $$varName |\
+   jq ".$key |= \"$value\"")
 end
 
 function _get -a varName key -d 'get property value from JSON formatted property set using JQ'
-  echo $$varName | jq ".$key"
+  echo $$varName |\
+   jq ".$key"
 end
 
 function get_unquoted -a v k
@@ -25,3 +27,7 @@ function get_unquoted -a v k
     echo (string replace -a "'" "" $r)
 end
 
+function create_slug -a name folder -d "create a filename without spaces or other nasties within the folder supplied"
+  set -l slug_base_name (echo "$name" | sed 's/[^[:alnum:].]/-/g'  | sed 's/-\+/-/g' | sed 's/-\./\./g')
+  echo "$folder/$slug_base_name"
+end
