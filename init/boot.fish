@@ -26,8 +26,12 @@ boot "Gathering Local Configs"
 # this gives the local rc function (that might contain secrets or configs you
 # don't want in a repo) to get a change to set configs in preparation for 
 # booting the rest of FD
-run_ifexists $HOME/localrc.fish
-run_ifexists $HOME/(hostname).localrc.fish
+run_ifexists $HOME/pre-local.fish
+run_ifexists $HOME/(hostname).pre-local.fish
+
+# for backwards compatibility...
+run_ifexists $HOME/local.fish
+run_ifexists $HOME/(hostname).local.fish
 
 boot "Booting Fishdots"
 # run each of the init scripts in each init level in turn
@@ -62,3 +66,5 @@ for level in (seq 0 $FD_MAX_RUN_LEVEL)
 end
 # IDEA: rename a plugin to have a leading underscore to ignore it
 
+run_ifexists $HOME/post-local.fish
+run_ifexists $HOME/(hostname).post-local.fish
