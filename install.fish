@@ -29,8 +29,8 @@
 set -l latest_release (curl -skq https://raw.githubusercontent.com/aabs/fishdots/master/latest-release.txt)
 
 if not set -q FISHDOTS_INSTALL_PATH
-  set -x FISHDOTS_INSTALL_PATH $HOME
-  echo installing into $FISHDOTS_INSTALL_PATH
+    set -x FISHDOTS_INSTALL_PATH $HOME
+    echo installing into $FISHDOTS_INSTALL_PATH
 end
 
 # compute the location for the installation
@@ -50,6 +50,9 @@ cd $FISHDOTS/..
 curl -sL https://github.com/aabs/fishdots/archive/v{$latest_release}.tar.gz | tar xzf -
 
 # now place an easy link to fishdots in the home folder
+if test -L $HOME/.fishdots
+    rm -f $HOME/.fishdots
+end
 ln -fs $FISHDOTS $HOME/.fishdots
 
 # now ensure FD gets loaded during fish shell start process
@@ -57,9 +60,9 @@ ln -fs $FISHDOTS $HOME/.fishdots
 touch $HOME/.config/fish/config.fish
 
 if test (grep -s 'fishdots/init/boot.fish' $HOME/.config/fish/config.fish | wc -l) -lt 1
-  echo "Configuring fishdots to run on start"
-  echo -e "\n\nsource ~/.fishdots/init/boot.fish" >> $HOME/.config/fish/config.fish
+    echo "Configuring fishdots to run on start"
+    echo -e "\n\nsource ~/.fishdots/init/boot.fish" >>$HOME/.config/fish/config.fish
 else
-  echo "Fishdots already configured to run on start"
+    echo "Fishdots already configured to run on start"
 end
 
