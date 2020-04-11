@@ -27,7 +27,6 @@ function get_unquoted -a v k
     echo (string replace -a "'" "" $r)
 end
 
-function create_slug -a name folder -d "create a filename without spaces or other nasties within the folder supplied"
-  set -l slug_base_name (echo "$name" | sed 's/[^[:alnum:].]/-/g'  | sed 's/-\+/-/g' | sed 's/-\./\./g')
-  echo "$folder/$slug_base_name"
+function to_slug -d "create a filename without spaces or other nasties within the folder supplied"
+  echo "$argv" | sed 's/[^[:alnum:].]/-/g'  | sed 's/-\+/-/g' | sed 's/-\./\./g'
 end
