@@ -36,7 +36,7 @@ end
 function fd_file_selector -a root_path pattern -d "nice file selector"
     set -e fd_selected_item
     set -l matches (fishdots_find $root_path $pattern)
-    if test 1 -eq (count $matches) and test -d $matches
+    if test 1 -eq (count $matches)
         set -g fd_selected_item $matches[1]
         return
     end
@@ -105,7 +105,7 @@ end
 
 function fishdots_search_select -a root_path pattern
     set -l opts (fishdots_search $root_path $pattern)
-    fd_menu $opts
+    fd_item_selector $opts
     set -g fd_selected_file "$opts[$fd_selected_item]"
 end
 
