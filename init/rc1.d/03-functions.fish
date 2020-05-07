@@ -94,7 +94,7 @@ function fishdots_search -a root_path pattern -d "find file by full text search"
 end
 
 function fishdots_find -a root_path pattern -d "find item by name"
-    find $root_path/ -iname "*$pattern*" | sort
+    find $root_path/ -type f -iname "*$pattern*" | sort
 end
 
 function fishdots_find_select -a root_path pattern
