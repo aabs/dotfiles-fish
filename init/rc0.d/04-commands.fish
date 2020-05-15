@@ -1,7 +1,7 @@
 #!/usr/bin/env fish
 
 # define the root prefix of a command set
-# e.g. define_command "plugin" "A set of commands to install and mange plugins" 
+# e.g. define_command "plugin" "A set of commands to install and mange plugins"
 function define_command -a prefix_name summary -d "create a command prefix"
     _define_command $prefix_name $summary
     _define_command_completion $prefix_name $summary
@@ -61,25 +61,25 @@ function _display_command_help_for -a prefix_name -d "display usage text for com
     set -l x "_subcommand_names_$prefix_name"
     set -l cmd_summary "_command_summary_$prefix_name"
     set -l header "Command Usage for $prefix_name"
-    echo $header
+    fdecho $header
     _underline $header '-'
-    echo $$cmd_summary
-    echo
-    echo $prefix_name" <command> [options] [args]"
-    echo
+    fdecho $$cmd_summary
+    fdecho
+    fdecho $prefix_name" <command> [options] [args]"
+    fdecho
 
     for subcommand in $$x
         set -l y "_subcommand_summary_"$prefix_name"_"$subcommand
-        echo -e "$prefix_name $subcommand\t"$$y
+        fdecho -e "$prefix_name $subcommand\t"$$y
     end
 
 end
 
 function _underline -a str ul -d "create an underlined version of a string"
     for i in (seq 1 (string length $str))
-        echo -n $ul
+        fdecho -n $ul
     end
-    echo
+    fdecho
 end
 
 function _define_command_dispatcher -a prefix -d "creates a function to dispatch subcommands for top level command"

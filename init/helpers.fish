@@ -6,6 +6,13 @@ function colour_print -a colour message
     set_color normal
 end
 
+function fdecho -d "just echo if we are allowed to"
+    if set -q FISHDOTS_SUPPRESS_BOOT_LOGGING
+        echo $argv
+    end
+
+end
+
 function fecho -a icon icon_colour msg  -d "display text with  (prefix, colour) msg"
     if set -q FISHDOTS_SUPPRESS_BOOT_LOGGING
         colour_print $icon_colour $icon
