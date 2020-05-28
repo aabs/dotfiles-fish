@@ -61,25 +61,25 @@ function _display_command_help_for -a prefix_name -d "display usage text for com
     set -l x "_subcommand_names_$prefix_name"
     set -l cmd_summary "_command_summary_$prefix_name"
     set -l header "Command Usage for $prefix_name"
-    fdecho $header
+    echo $header
     _underline $header '-'
-    fdecho $$cmd_summary
-    fdecho
-    fdecho $prefix_name" <command> [options] [args]"
-    fdecho
+    echo $$cmd_summary
+    echo
+    echo $prefix_name" <command> [options] [args]"
+    echo
 
     for subcommand in $$x
         set -l y "_subcommand_summary_"$prefix_name"_"$subcommand
-        fdecho -e "$prefix_name $subcommand\t"$$y
+        echo -e "$prefix_name $subcommand\t"$$y
     end
 
 end
 
 function _underline -a str ul -d "create an underlined version of a string"
     for i in (seq 1 (string length $str))
-        fdecho -n $ul
+        echo -n $ul
     end
-    fdecho
+    echo
 end
 
 function _define_command_dispatcher -a prefix -d "creates a function to dispatch subcommands for top level command"
@@ -109,9 +109,9 @@ function _define_command_dispatcher -a prefix -d "creates a function to dispatch
 end
 
 function _define_help_subcommand -a prefix_name
-    set -l ev "on_"$prefix_name"_help"
-    define_subcommand $prefix_name "help" $ev "Display help for command $prefix_name"
+    set -l ev $prefix_name"_help"
+    define_subcommand_nonevented $prefix_name "help" $ev "Display help for command $prefix_name"
 
     # create an event handler for displaying the help for this command
-    eval 'function __'$prefix_name'_help -e '$ev' ; _display_command_help_for '$prefix_name'; end'
+    eval 'function '$ev' ; _display_command_help_for '$prefix_name'; end'
 end
