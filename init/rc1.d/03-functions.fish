@@ -35,48 +35,13 @@ end
 
 function fd_file_selector -a root_path pattern -d "nice file selector"
     set -e fd_selected_item
-    set -l matches (fishdots_find $root_path $pattern)
-    if test 1 -eq (count $matches)
-        set -g fd_selected_item $matches[1]
-        return
-    end
-    set -g dcmd "dialog --stdout --no-tags --menu 'select the project' 20 60 20 "
-    set c 1
-    for option in $matches
-        set label (basename $option)
-        set -g dcmd "$dcmd $option '$c $label'"
-        set c (math $c + 1)
-    end
-    set choice (eval "$dcmd")
-    clear
-    if test $status -eq 0
-        set -g fd_selected_item $choice
-    end
+    set -g fd_selected_item (find $root_path -iname '*'$pattern'*' | fzf)
 end
 
 function fd_item_selector -d "nice file selector"
     set -e fd_selected_item
     set -l matches $argv
-    if test 1 -eq (count $matches) and test -d $matches
-        set -g fd_selected_item $matches[1]
-        return
-    end
-    set -g dcmd "dialog --stdout --no-tags --menu 'select the project' 20 60 20 "
-    set c 1
-    for option in $matches
-        if test -e $option
-            set label (basename $option)
-        else
-            set label $option
-        end
-        set -g dcmd "$dcmd $option '$c $label'"
-        set c (math $c + 1)
-    end
-    set choice (eval "$dcmd")
-    clear
-    if test $status -eq 0
-        set -g fd_selected_item $choice
-    end
+    set -g fd_selected_item (for i in $matches; echo $i; end | fzf)
 end
 
 function fishdots_menu -e on_fishdots_menu
@@ -90,7 +55,7 @@ function fishdots_menu -e on_fishdots_menu
 end
 
 function fishdots_search -a root_path pattern -d "find file by full text search"
-    ag -lc "$pattern" $root_path | sort -t: -nrk2 | cut -d':' -f1
+    rg -li $pattern $root_path
 end
 
 function fishdots_find -a root_path pattern -d "find item by name"
