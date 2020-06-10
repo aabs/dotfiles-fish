@@ -71,7 +71,6 @@ end
 function fishdots_search_select -a root_path pattern
     set -l opts (fishdots_search $root_path $pattern)
     fd_item_selector $opts
-    set -g fd_selected_file "$opts[$fd_selected_item]"
 end
 
 function fishdots_select_from -a root_path search_pattern -d "create a menu to choose between the elements found using the search terms"
