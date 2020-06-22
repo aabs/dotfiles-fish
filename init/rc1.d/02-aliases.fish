@@ -4,10 +4,14 @@ function pubkey
     ok 'Public key copied to pasteboard.'
 end
 
+function l2 -w ls
+    exa -l --level=2
+end
+
 function l -w ls
     clear
     if type -q exa
-        exa --long --tree --level=2
+        exa -l --group-directories-first --git --color-scale
     else
         ls -lash --group-directories-first
     end
