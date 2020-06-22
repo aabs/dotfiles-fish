@@ -5,13 +5,13 @@ function pubkey
 end
 
 function l2 -w ls
-    exa -l --level=2
+    exa -al --level=2
 end
 
 function l -w ls
     clear
     if type -q exa
-        exa -l --group-directories-first --git --color-scale
+        exa -al --group-directories-first --git --color-scale
     else
         ls -lash --group-directories-first
     end
