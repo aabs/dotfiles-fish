@@ -6,7 +6,11 @@ end
 
 function l -w ls
     clear
-    ls -lash --group-directories-first
+    if type -q exa
+        exa --long --tree --level=2
+    else
+        ls -lash --group-directories-first
+    end
 end
 
 abbr --add salias 'abbr | sort | grep'
@@ -16,7 +20,7 @@ abbr --add cls 'clear'
 function mcd -w mkdir
     mkdir $argv[1]
     cd $argv[1]
-end 
+end
 
 switch (uname)
     case Darwin
